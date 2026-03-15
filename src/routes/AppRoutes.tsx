@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "../shared/layout/Layout";
 import Dashboard from "../modules/dashboard/dashboard";
-import GetClientsByApi from "../shared/services/Client";
-import NewClientPage from "../pages/NewClientPage";
-import ClientDetailPage from "../pages/ClientDetailPage";
+import GetClients from "../pages/pagesClients/ClientPage";
+import NewClientPage from "../pages/pagesClients/NewClientPage";
+import ClientDetailPage from "../pages/pagesClients/ClientDetailPage";
+import EditClient from "../pages/pagesClients/EditClientPage";
 
 // Páginas simples
 const HomePage = () => <div>Página de inicio</div>;
@@ -22,9 +23,10 @@ const AppRoutes: React.FC = () => {
 
 
           {/*clients*/}
-          <Route path="/clients" element={<GetClientsByApi />} />
+          <Route path="/clients" element={<GetClients />} />
           <Route path="/clients/new" element={<NewClientPage />} />
           <Route path="/clients/:id" element={<ClientDetailPage />} /> 
+          <Route path="/clients/:id/edit" element={<EditClient />} />
         </Routes>
       </Layout>
     </Router>

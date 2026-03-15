@@ -1,26 +1,18 @@
 import { useEffect, useState } from "react"
+import type { Client } from "../../type/Client"
 
 
-type Client = {
-    id: string,
-    name: string
-    nickname: string,
-    cedula: string,
-    address: string,
-    phone: string,
-    planId: string,
-    routerSerial?: string
-}
-function GetClientsByApi() {
+
+function GetClients() {
 
     const [clients, setClients] = useState<Client[]>([])
 
     useEffect(() => {
-        const GetClients = async () => {
+        const clients = async () => {
             try {
-            const res = await fetch("http://localhost:3000/clients")
-            const data: Client[] = await res.json()
-            setClients(data)
+                const res = await fetch("http://localhost:3000/clients")
+                const data: Client[] = await res.json()
+                setClients(data)
             } catch (error) {
                 console.log(error)
             }
@@ -28,7 +20,7 @@ function GetClientsByApi() {
         }
 
     
-        GetClients();
+        clients();
     }, [])
 
     const showClient = clients.map((client) => {
@@ -50,9 +42,11 @@ function GetClientsByApi() {
         <>
             <h2>aqui va estar clientes</h2>
             <section>{showClient}</section>
+
+            
         </>
     )
     
 }
 
-export default GetClientsByApi
+export default GetClients

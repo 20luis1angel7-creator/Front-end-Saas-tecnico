@@ -6,8 +6,8 @@ function NewClientPage() {
     const [cedula, setCedula] = useState("")
     const [address, setAddress] = useState("")
     const [phone, setPhone] = useState("")
-    const [plan, setPlan] = useState("")
-    const [router, setRouter] = useState("")
+    const [planId, setPlanId] = useState("")
+    const [routerSerial, setRouterSerial] = useState("")
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -23,8 +23,8 @@ function NewClientPage() {
                 cedula: cedula,
                 address: address,
                 phone: phone,
-                plan: plan,
-                router: router
+                planId: planId,
+                routerSerial: routerSerial
             })
         })
         const data = await res.json()
@@ -68,14 +68,14 @@ function NewClientPage() {
                 <input 
                 type="text"
                 placeholder="plan"
-                value={plan}
-                onChange={(e) => setPlan(e.target.value)} />
+                value={planId}
+                onChange={(e) => setPlanId(e.target.value)} />
 
                 <input 
                 type="text"
                 placeholder="router"
-                value={router}
-                onChange={(e) => setRouter(e.target.value)} />
+                value={routerSerial}
+                onChange={(e) => setRouterSerial(e.target.value)} />
 
                 <button>guardar</button>
             </form>

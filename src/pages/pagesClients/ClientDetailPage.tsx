@@ -1,17 +1,11 @@
 
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import Suspend from "../../shared/components/SuspendClient"
+import ActivateClient from "../../shared/components/ActivateClient"
+import EliminarClient from "../../shared/components/DeleteClient"
+import type { Client } from "../../type/Client"
 
-type Client = {
-    id: string,
-    name: string
-    nickname: string,
-    cedula: string,
-    address: string,
-    phone: string,
-    planId: string,
-    routerSerial?: string
-}
 function ClientDetailPage() {
 
     
@@ -42,6 +36,10 @@ function ClientDetailPage() {
                     <h3>{client.phone}</h3>
                     <h3>{client.planId}</h3>
                     <h3>{client.routerSerial ?? "no router"}</h3>
+
+                    <Suspend client={client} />
+                    <ActivateClient client={client} />
+                    <EliminarClient client={client} />
                 </div>
             )}
         </>
