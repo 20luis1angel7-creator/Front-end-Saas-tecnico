@@ -3,7 +3,7 @@ import type { PlanProps } from "../../../type/PlansType";
 
 
 function DeletePlan( {plan}: PlanProps ) {
-    const plandelete = async (id: string) => {
+    const planDelete = async (id: string) => {
         try {
             await fetch(`http://localhost:3000/plans/${id}`,{
                 method: "DELETE"
@@ -17,7 +17,7 @@ function DeletePlan( {plan}: PlanProps ) {
 
     return (
         <>
-            <button onClick={() => plandelete(plan.id)}>
+            <button onClick={() => planDelete(plan.id)}>
                 delete
             </button>
         </>

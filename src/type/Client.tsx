@@ -2,13 +2,13 @@
 
 export type Client = {
     id: string,
-    name: string
+    name: string,
     nickname: string,
     cedula: string,
     address: string,
     phone: string,
     planId: string,
-    routerSerial?: string
+    routerSerial?: string,
     status?: string
 }
 

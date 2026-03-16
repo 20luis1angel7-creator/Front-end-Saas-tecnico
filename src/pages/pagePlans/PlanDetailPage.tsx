@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import type { Plan } from "../../type/PlansType"
+import DeletePlan from "../../shared/components/PlanComponents/DeletePlan"
 
 
 function PlanDetailPage() {
@@ -27,6 +28,8 @@ function PlanDetailPage() {
                     <h2>{plan.name}</h2>
                     <p>{plan.price}</p>
                     <p>{plan.speed}</p>
+
+                    <DeletePlan plan={plan} />
                 </div>
             )}
             
