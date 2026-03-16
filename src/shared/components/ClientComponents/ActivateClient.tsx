@@ -1,5 +1,5 @@
 
-import type { clientProps } from "../../type/Client"
+import type { clientProps } from "../../../type/Client"
 
 function ActivateClient({client}: clientProps) {
 

@@ -1,9 +1,9 @@
 
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import Suspend from "../../shared/components/SuspendClient"
-import ActivateClient from "../../shared/components/ActivateClient"
-import EliminarClient from "../../shared/components/DeleteClient"
+import Suspend from "../../shared/components/ClientComponents/SuspendClient"
+import ActivateClient from "../../shared/components/ClientComponents/ActivateClient"
+import EliminarClient from "../../shared/components/ClientComponents/DeleteClient"
 import type { Client } from "../../type/Client"
 
 function ClientDetailPage() {
@@ -25,6 +25,7 @@ function ClientDetailPage() {
 
     return (
         <>
+            <h1>Client details</h1>
             <h2>cliente {id}</h2>
 
             {client && (

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import type { Client } from "../../type/Client"
 
 
@@ -15,35 +16,42 @@ function GetClients() {
                 setClients(data)
             } catch (error) {
                 console.log(error)
-            }
-            
-        }
-
-    
+            }   
+        }    
         clients();
     }, [])
-
-    const showClient = clients.map((client) => {
-        return (
-            <div key={client.id}>
-                <h2>{client.name}</h2>
-                <p>{client.nickname}</p>
-                <p>{client.cedula}</p>
-                <p>{client.address}</p>
-                <p>{client.phone}</p>
-                <p>{client.planId}</p>
-                <p>{client.routerSerial}</p>
-            </div>
-        )
-    })
-
         
     return (
         <>
-            <h2>aqui va estar clientes</h2>
-            <section>{showClient}</section>
+            <h2>clients page</h2>
 
-            
+            <Link to={"clients/new"}>
+            <button>create client</button>
+            </Link>
+
+            <section>
+                {clients.map((client) => (
+                    <div key={client.id}>
+                        <h2>{client.name}</h2>
+                        <p>{client.nickname}</p>
+                        <p>{client.cedula}</p>
+                        <p>{client.address}</p>
+                        <p>{client.phone}</p>
+                        <p>{client.planId}</p>
+                        <p>{client.routerSerial}</p>
+
+                        <Link to={`clients/${client.id}`}>
+                        <button>show client</button>
+                        </Link>
+
+                        <Link to={`clients/${client.id}/edit`}>
+                        <button>update client</button>
+                        </Link>
+                    </div>
+                ))}
+            </section>
+
+        
         </>
     )
     
