@@ -1,0 +1,26 @@
+import type { PlanProps } from "../../../type/PlansType";
+
+
+
+function DeletePlan( {plan}: PlanProps ) {
+    const plandelete = async (id: string) => {
+        try {
+            await fetch(`http://localhost:3000/plans/${id}`,{
+                method: "DELETE"
+            })
+            alert("Plan delete")
+        } catch (e) {
+            console.log(e)
+            alert(e)
+        }
+    }
+
+    return (
+        <>
+            <button onClick={() => plandelete(plan.id)}>
+                delete
+            </button>
+        </>
+    )
+}
+export default DeletePlan

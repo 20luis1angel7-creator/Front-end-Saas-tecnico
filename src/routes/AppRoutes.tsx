@@ -6,6 +6,10 @@ import GetClients from "../pages/pagesClients/ClientPage";
 import NewClientPage from "../pages/pagesClients/NewClientPage";
 import ClientDetailPage from "../pages/pagesClients/ClientDetailPage";
 import EditClient from "../pages/pagesClients/EditClientPage";
+import PlanPage from "../pages/pagePlans/PlanPage";
+import NewPlan from "../pages/pagePlans/NewPlanPage";
+import EditPlan from "../pages/pagePlans/EditPlanPage";
+import PlanDetailPage from "../pages/pagePlans/PlanDetailPage";
 
 // Páginas simples
 const HomePage = () => <div>Página de inicio</div>;
@@ -27,6 +31,12 @@ const AppRoutes: React.FC = () => {
           <Route path="/clients/new" element={<NewClientPage />} />
           <Route path="/clients/:id" element={<ClientDetailPage />} /> 
           <Route path="/clients/:id/edit" element={<EditClient />} />
+
+          {/*Plans*/}
+          <Route path="/plans" element={<PlanPage />} />
+          <Route path="/plans" element={<NewPlan />} />
+          <Route path="/plans/:id/update" element={<EditPlan />} />
+          <Route path="plans/:id" element={<PlanDetailPage />} />
         </Routes>
       </Layout>
     </Router>

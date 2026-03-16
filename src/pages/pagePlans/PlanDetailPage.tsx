@@ -9,7 +9,7 @@ function PlanDetailPage() {
 
     useEffect(() => {
         const getPlan = async () => {
-            const res = await fetch(`http://localhost:3000/${id}`)
+            const res = await fetch(`http://localhost:3000/${id}/update`)
             const data = await res.json()
             setPlan(data)
         }
