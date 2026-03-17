@@ -4,9 +4,9 @@ import type { Expense } from "../../type/ExpenseType";
 
 
 function ExpensePage() {
-     const [expenses, setExpense] = useState<Expense[]>([])
+    const [expenses, setExpense] = useState<Expense[]>([])
 
-     useEffect(() => {
+    useEffect(() => {
         const getExpense = async () => {
             const res = await fetch("http://localhost:3000/expenses")
             const data: Expense[] = await res.json()
