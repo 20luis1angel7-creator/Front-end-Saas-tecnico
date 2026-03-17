@@ -12,7 +12,7 @@ function OrderDetail() {
 
     useEffect(() => {
         const getorder = async () => {
-            const res = await fetch(`http://localhost:3000/orders/${id}/update`)
+            const res = await fetch(`http://localhost:3000/orders/${id}`)
             const data = await res.json()
             setOrder(data)
         }

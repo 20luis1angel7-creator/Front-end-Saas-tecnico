@@ -12,7 +12,7 @@ function DeleteOrder({order}: OrderProps) {
 
     return (
         <>
-            <button onClick={() => orderDelete(order.clientId)}>
+            <button onClick={() => orderDelete(order.id)}>
                 Delete
             </button>
         </>

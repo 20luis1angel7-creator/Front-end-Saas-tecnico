@@ -1,9 +1,7 @@
 import React, { useState } from "react"
-import { useParams } from "react-router-dom"
 
 
 function NewOrder() {
-    const { id } = useParams()
 
     const [clientId, setClientId] = useState("")
     const [createdAt, setCreatedAt] = useState(Date)
@@ -11,7 +9,7 @@ function NewOrder() {
     const orderNew = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        const res = await fetch(`http://localhost:3000/orders/${id}`, {
+        const res = await fetch(`http://localhost:3000/orders`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -23,6 +21,7 @@ function NewOrder() {
         })
         const data = await res.json()
         console.log(data)
+        alert("created order")
     }
 
     return (
@@ -41,6 +40,8 @@ function NewOrder() {
                 value={createdAt}
                 onChange={(e) => setCreatedAt(e.target.value)} />
             </form>
+
+            <button>guardar</button>
         </>
     )
 }

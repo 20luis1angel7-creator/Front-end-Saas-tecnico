@@ -77,7 +77,9 @@ function NewClientPage() {
                 value={routerSerial}
                 onChange={(e) => setRouterSerial(e.target.value)} />
 
-                <button>guardar</button>
+                <button>
+                    guardar
+                </button>
             </form>
         </>
     )

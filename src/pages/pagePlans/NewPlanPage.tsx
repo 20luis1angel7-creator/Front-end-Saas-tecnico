@@ -3,8 +3,8 @@ import React, { useState } from "react"
 
 function NewPlan() {
     const [name, setName] = useState("")
-    const [price, setPrice] = useState("")
-    const [speed, setSpeed] = useState("")
+    const [price, setPrice] = useState<number>(0)
+    const [speed, setSpeed] = useState<number>(0)
 
     const createPlan = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -34,15 +34,19 @@ function NewPlan() {
                 value={name}
                 onChange={(e) => setName(e.target.value)} />
 
-                <input type="text"
+                <input type="number"
                 placeholder="price"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)} />
+                onChange={(e) => setPrice(Number(e.target.value))} />
 
-                <input type="text"
+                <input type="number"
                 placeholder="speed"
                 value={speed}
-                onChange={(e) => setSpeed(e.target.value)} />
+                onChange={(e) => setSpeed(Number(e.target.value))} />
+
+                <button>
+                    guardar
+                </button>
             </form>
         </>
     )

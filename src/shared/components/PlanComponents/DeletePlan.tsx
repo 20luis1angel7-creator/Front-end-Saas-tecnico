@@ -11,7 +11,7 @@ function DeletePlan( {plan}: PlanProps ) {
             alert("Plan delete")
         } catch (e) {
             console.log(e)
-            alert(e)
+            alert("Error al eliminar plan")
         }
     }
 

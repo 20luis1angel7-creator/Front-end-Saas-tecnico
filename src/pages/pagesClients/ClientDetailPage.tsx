@@ -14,7 +14,7 @@ function ClientDetailPage() {
     
     useEffect(() => {
         const getClient = async () => { 
-            const res = await fetch(`http://localhost:3000/clients/${id}/update`)
+            const res = await fetch(`http://localhost:3000/clients/${id}`)
             const data = await res.json()
             setClient(data)
         }

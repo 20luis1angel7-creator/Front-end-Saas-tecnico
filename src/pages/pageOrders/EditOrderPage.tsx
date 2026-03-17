@@ -36,7 +36,7 @@ function EditOrder() {
         <>
             <h2>update order</h2>
 
-            <form onChange={handlerorder}>
+            <form onSubmit={handlerorder}>
                 <input
                 value={order.clientId}
                 onChange={(e) => 
@@ -48,6 +48,8 @@ function EditOrder() {
                 onChange={(e) => 
                     setOder({ ...order, createdAt: e.target.value})
                 } />
+
+                <button>guardar</button>
             </form>
         </>
     )

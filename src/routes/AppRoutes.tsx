@@ -38,13 +38,13 @@ const AppRoutes: React.FC = () => {
 
           {/*Plans*/}
           <Route path="/plans" element={<PlanPage />} />
-          <Route path="/plans" element={<NewPlan />} />
+          <Route path="/plans/new" element={<NewPlan />} />
           <Route path="/plans/:id/update" element={<EditPlan />} />
           <Route path="plans/:id" element={<PlanDetailPage />} />
 
           {/*Orders */}
           <Route path="/orders" element={<OrderPage />} />
-          <Route path="/orders" element={<NewOrder />} />
+          <Route path="/orders/new" element={<NewOrder />} />
           <Route path="/orders/:id/update" element={<EditOrder />} />
           <Route path="/orders/:id" element={<OrderDetail />} />
         </Routes>
