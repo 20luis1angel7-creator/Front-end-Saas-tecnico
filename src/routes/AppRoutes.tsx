@@ -18,6 +18,10 @@ import ExpensePage from "../pages/pageExpense/ExpensePage";
 import NewExpense from "../pages/pageExpense/ExpenseNew";
 import ExpenseDetail from "../pages/pageExpense/ExpenseDetailPage";
 import EditExpense from "../pages/pageExpense/EditExpense";
+import MaterialPage from "../pages/PageMaterial/MaterialPage";
+import MaterialDetail from "../pages/PageMaterial/MaterialDetailPage";
+import NewMaterial from "../pages/PageMaterial/NewMaterialPage";
+import EditMaterial from "../pages/PageMaterial/EditMaterialPage";
 
 
 // Páginas simples
@@ -58,6 +62,12 @@ const AppRoutes: React.FC = () => {
           <Route path="expenses/new" element={<NewExpense />} />
           <Route path="expenses/:id/update" element={<EditExpense />} />
           <Route path="expenses/:id" element={<ExpenseDetail />} />
+
+          {/*Materials */}
+          <Route path="materials/" element={<MaterialPage />} />
+          <Route path="materials/new" element={<NewMaterial />} />
+          <Route path="materials/:id/update" element={<EditMaterial />} />
+          <Route path="materials/:id" element={<MaterialDetail />} />
         </Routes>
       </Layout>
     </Router>

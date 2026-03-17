@@ -7,7 +7,7 @@ function NewExpense() {
 
     const [description, setDescrption] = useState("")
     const [amount, setAmount] = useState(0)
-    const [date, setDate] = useState(0)
+    const [date, setDate] = useState("")
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -30,7 +30,7 @@ function NewExpense() {
     return (
         <>
             <h2>create expense</h2>
-            <section onSubmit={handlerSubmit}>
+            <form onSubmit={handlerSubmit}>
                 <input 
                 type="text"
                 value={description} 
@@ -40,10 +40,12 @@ function NewExpense() {
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))} />
 
-                <input type="number"
+                <input type="text"
                 value={date}
-                onChange={(e) => setDate(Number(e.target.value))} />
-            </section>
+                onChange={(e) => setDate(e.target.value)} />
+            
+                <button>guardar</button>
+            </form>
         </>
     )
 }

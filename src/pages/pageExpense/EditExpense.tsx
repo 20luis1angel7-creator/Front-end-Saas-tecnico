@@ -10,14 +10,14 @@ function EditExpense() {
     const [expense, setExpense] = useState({
         description: "",
         amount: 0,
-        date: 0
+        date: ""
     })
 
     useEffect(() => {
         fetch(`http://localhost:3000/expenses/${id}`)
             .then(res => res.json())
             .then(data => setExpense(data))
-    })
+    },[id])
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -47,10 +47,10 @@ function EditExpense() {
                     setExpense({ ...expense, amount: Number(e.target.value)})
                 } />
 
-                <input type="date"
+                <input type="text"
                 value={expense.date}
                 onChange={(e) => 
-                    setExpense({ ...expense, date: Number(e.target.value)})
+                    setExpense({ ...expense, date: e.target.value})
                 } />
 
                 <button type="submit">guardar</button>

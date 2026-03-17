@@ -1,9 +1,14 @@
 
+export type ExpenseType = 
+| "EMPLOYEE"
+| "PROCIDER"
+| "MATERIAL"
+| "MAINTENANCE"
 
 export type Expense = {
     id: string,
     companyId: string;
-    /*type: ExpenseType;*/
+    type: ExpenseType;
     description: string;
     amount: number;
     date: Date;
