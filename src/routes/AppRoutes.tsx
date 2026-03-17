@@ -14,6 +14,11 @@ import OrderPage from "../pages/pageOrders/OrderPage";
 import NewOrder from "../pages/pageOrders/NewOrderPage";
 import EditOrder from "../pages/pageOrders/EditOrderPage";
 import OrderDetail from "../pages/pageOrders/OrderDetailPage";
+import ExpensePage from "../pages/pageExpense/ExpensePage";
+import NewExpense from "../pages/pageExpense/ExpenseNew";
+import ExpenseDetail from "../pages/pageExpense/ExpenseDetailPage";
+import EditExpense from "../pages/pageExpense/EditExpense";
+
 
 // Páginas simples
 const HomePage = () => <div>Página de inicio</div>;
@@ -47,6 +52,12 @@ const AppRoutes: React.FC = () => {
           <Route path="/orders/new" element={<NewOrder />} />
           <Route path="/orders/:id/update" element={<EditOrder />} />
           <Route path="/orders/:id" element={<OrderDetail />} />
+
+          {/*Expense */}
+          <Route path="expenses/" element={<ExpensePage />} />
+          <Route path="expenses/new" element={<NewExpense />} />
+          <Route path="expenses/:id/update" element={<EditExpense />} />
+          <Route path="expenses/:id" element={<ExpenseDetail />} />
         </Routes>
       </Layout>
     </Router>
