@@ -23,32 +23,52 @@ function GetClients() {
         
     return (
         <>
-            <h2>clients page</h2>
+            <h2 className="font-bold hover:text-zinc-400 px-4 py-2">clients page</h2>
 
             <Link to="clients/new">
-            <button>create client</button>
+            <button className="bg-gray-700 rounded px-4 py-2 my-5 hover:bg-gray-500 ">create client</button>
             </Link>
 
-            <section>
-                {clients.map((client) => (
-                    <div key={client.id}>
-                        <h2>{client.name}</h2>
-                        <p>{client.nickname}</p>
-                        <p>{client.cedula}</p>
-                        <p>{client.address}</p>
-                        <p>{client.phone}</p>
-                        <p>{client.planId}</p>
-                        <p>{client.routerSerial}</p>
+            <section className="overflow-x-auto">
+                <table className="min-w-full text-sm text-left text-gray-300 border border-gray-700">
+                    <thead className="bg-gray-800 text-gray-200 uppercase text-xs">
+                        <tr>
+                        <th className="px-4 py-2">name</th>
+                        <th className="px-4 py-2">nickname</th>
+                        <th className="px-4 py-2">cedula</th>
+                        <th className="px-4 py-2">address</th>
+                        <th className="px-4 py-2">phone</th>
+                        <th className="px-4 py-2">planId</th>
+                        <th className="px-4 py-2">routerSerial</th>
+                        <th className="px-4 py-2">acciones</th>
+                        </tr>
+                    </thead>
 
-                        <Link to={`clients/${client.id}`}>
-                        <button>show client</button>
-                        </Link>
+                    <tbody className="bg-gray-900">
+                    {clients.map((client) => (
+                        <tr key={client.id} className="border-b border-gray-700 hover:bg-gray-800">
+                            
+                            <td className="px-4 py-2">{client.name}</td>
+                            <td className="px-4 py-2">{client.nickname}</td>
+                            <td className="px-4 py-2">{client.cedula}</td>
+                            <td className="px-4 py-2">{client.address}</td>
+                            <td className="px-4 py-2">{client.phone}</td>
+                            <td className="px-4 py-2">{client.planId}</td>
+                            <td className="px-4 py-2">{client.routerSerial}</td>
 
-                        <Link to={`clients/${client.id}/edit`}>
-                        <button>update client</button>
-                        </Link>
-                    </div>
-                ))}
+                            <td className="px-4 py-2 space-x-2">
+                                <Link to={`clients/${client.id}`}>
+                                <button className="bg-gray-700 px-4 py-1 rounded hover:bg-gray-500">show client</button>
+                                </Link>
+
+                                <Link to={`/clients/${client.id}/edit`}>
+                                <button className="bg-gray-700 px-2 py-1 rounded hover:bg-gray-500">update client</button>
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </section>
 
         
