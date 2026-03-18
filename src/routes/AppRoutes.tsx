@@ -22,6 +22,9 @@ import MaterialPage from "../pages/PageMaterial/MaterialPage";
 import MaterialDetail from "../pages/PageMaterial/MaterialDetailPage";
 import NewMaterial from "../pages/PageMaterial/NewMaterialPage";
 import EditMaterial from "../pages/PageMaterial/EditMaterialPage";
+import InvoiceDetail from "../pages/pageInvoice/InvoiceDetailPage";
+import InvoicePage from "../pages/pageInvoice/InvoiceByClientPage";
+
 
 
 // Páginas simples
@@ -68,6 +71,10 @@ const AppRoutes: React.FC = () => {
           <Route path="materials/new" element={<NewMaterial />} />
           <Route path="materials/:id/update" element={<EditMaterial />} />
           <Route path="materials/:id" element={<MaterialDetail />} />
+
+          {/*Invoice */}
+          <Route path="invoices/clients/:clientId" element={<InvoicePage />} />
+          <Route path="Invoices/:invoiceId" element={<InvoiceDetail />} />
         </Routes>
       </Layout>
     </Router>

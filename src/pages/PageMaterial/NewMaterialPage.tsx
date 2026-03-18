@@ -55,8 +55,7 @@ function NewMaterial() {
                 onChange={(e) => setUnitPrice(Number(e.target.value))} />
 
                 <input type="boolean"
-                placeholder="active"
-                /*value={active}*/   
+                placeholder="active" 
                 onChange={(e) => setActive(Boolean(e.target.value))} />
 
                 <button>guardar</button>

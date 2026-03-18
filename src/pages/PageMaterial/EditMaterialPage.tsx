@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 function EditMaterial() {
     const { id } = useParams()
 
-    const [materials, setMaterials] = useState({
+    const [material, setMaterial] = useState({
         name: "",
         stock: 0,
         minStock: 0,
@@ -18,8 +18,8 @@ function EditMaterial() {
     useEffect(() => {
         fetch(`http://localhost:3000/materials/${id}`)
             .then(res => res.json())
-            .then(data => setMaterials(data))
-    })
+            .then(data => setMaterial(data))
+    },[id])
 
     const handlerSubmit = async () => {
         fetch(`http://localhost:3000/materials/${id}`, {
@@ -27,7 +27,7 @@ function EditMaterial() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(materials)
+            body: JSON.stringify(material)
         })
     } 
 
@@ -35,34 +35,33 @@ function EditMaterial() {
         <>
             <form onSubmit={handlerSubmit}>
                 <input type="text"
-                value={materials.name} 
+                value={material.name} 
                 onChange={(e) =>
-                    setMaterials({ ...materials, name: e.target.value})
+                    setMaterial({ ...material, name: e.target.value})
                 }/>
 
                 <input type="number"
-                value={materials.stock}
+                value={material.stock}
                 onChange={(e) => 
-                    setMaterials({ ...materials, stock: Number(e.target.value)})
+                    setMaterial({ ...material, stock: Number(e.target.value)})
                 } />
 
                 <input type="number"
-                value={materials.minStock}
+                value={material.minStock}
                 onChange={(e) => 
-                    setMaterials({ ...materials, minStock: Number(e.target.value)})
+                    setMaterial({ ...material, minStock: Number(e.target.value)})
                 } />
 
                 <input type="number"
-                value={materials.unitPrice}
+                value={material.unitPrice}
                 onChange={(e) => 
-                    setMaterials({ ...materials, unitPrice: Number(e.target.value)})
+                    setMaterial({ ...material, unitPrice: Number(e.target.value)})
                 } />
 
-                {/*<input type="text"
-                value={materials.active}
+                <input type="text"
                 onChange={(e) => 
-                    setMaterials({ ...materials, active: e.target.value})
-                } />*/}
+                    setMaterial({ ...material, active: Boolean(e.target.value)})
+                } />
             </form>
         </>
     )

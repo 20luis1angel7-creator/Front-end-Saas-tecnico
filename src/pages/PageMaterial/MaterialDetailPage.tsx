@@ -6,13 +6,13 @@ import Deactivate from "../../shared/components/MaterialComponents/DeactivateMat
 function MaterialDetail() {
 
     const { id } = useParams()
-    const [materials, setMaterials] = useState<Material | null>(null)
+    const [material, setMaterial] = useState<Material | null>(null)
 
     useEffect(() => {
         const getMaterial = async () => {
             const res = await fetch(`http://localhost:3000/materials/${id}`)
             const data = await res.json()
-            setMaterials(data)
+            setMaterial(data)
         }
         getMaterial()
     },[id])
@@ -20,16 +20,16 @@ function MaterialDetail() {
     return ( 
         <>
             <h2>detail materials</h2>
-            <h2>material id: ${id}</h2>
+            <h2>material id: {id}</h2>
 
-            {materials && (
+            {material && (
                 <div>
-                    <h3>{materials.name}</h3>
-                    <h3>{materials.stock}</h3>
-                    <h3>{materials.minStock}</h3>
-                    <h3>{materials.unitPrice}</h3>
+                    <h3>{material.name}</h3>
+                    <h3>{material.stock}</h3>
+                    <h3>{material.minStock}</h3>
+                    <h3>{material.unitPrice}</h3>
                     {/*<h3>{materials.active}</h3>*/}
-                    <Deactivate  material={materials}/>
+                    <Deactivate  material={material}/>
                     
                 </div>
             )}

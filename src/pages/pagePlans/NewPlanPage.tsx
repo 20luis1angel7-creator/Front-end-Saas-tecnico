@@ -5,6 +5,7 @@ function NewPlan() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState<number>(0)
     const [speed, setSpeed] = useState<number>(0)
+    const [created, setCreated] = useState<Date>(new Date())
 
     const createPlan = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -18,7 +19,8 @@ function NewPlan() {
             body: JSON.stringify ({
                 name: name,
                 price: price,
-                speed: speed
+                speed: speed,
+                created: created
             })
         })
         const data = await res.json()
@@ -43,6 +45,10 @@ function NewPlan() {
                 placeholder="speed"
                 value={speed}
                 onChange={(e) => setSpeed(Number(e.target.value))} />
+
+                <input type="text"
+                placeholder="created"
+                onChange={(e) => setCreated(new Date(e.target.value))} />
 
                 <button>
                     guardar

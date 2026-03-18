@@ -4,7 +4,7 @@ import type { MaterialProps } from "../../../type/MaterialType"
 function Deactivate( {material}: MaterialProps) {
 
     const handlerDeactivate = async () => {
-        await fetch(`http://localhost:3000/materials${material.id}/Deactivate`, {
+        await fetch(`http://localhost:3000/materials/${material.id}/deactivate`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
