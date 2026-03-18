@@ -24,6 +24,8 @@ import NewMaterial from "../pages/PageMaterial/NewMaterialPage";
 import EditMaterial from "../pages/PageMaterial/EditMaterialPage";
 import InvoiceDetail from "../pages/pageInvoice/InvoiceDetailPage";
 import InvoicePage from "../pages/pageInvoice/InvoiceByClientPage";
+import InvoicePayment from "../pages/pagePayment/InvoicePaymentPage";
+import NewPayment from "../pages/pagePayment/NewPaymentPage";
 
 
 
@@ -75,6 +77,10 @@ const AppRoutes: React.FC = () => {
           {/*Invoice */}
           <Route path="invoices/clients/:clientId" element={<InvoicePage />} />
           <Route path="Invoices/:invoiceId" element={<InvoiceDetail />} />
+
+          {/*payments */}
+          <Route path="payments/new" element={<NewPayment />} /> 
+          <Route path="payments/invoices/:invoiceId" element={<InvoicePayment />} />
         </Routes>
       </Layout>
     </Router>
