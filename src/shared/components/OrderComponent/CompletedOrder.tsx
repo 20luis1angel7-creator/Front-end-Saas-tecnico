@@ -1,13 +1,19 @@
 import type { OrderProps } from "../../../type/OrderType"
 
 
-function DeleteOrder({order}: OrderProps) {
+function CompletedOrder({order}: OrderProps) {
     
     const orderDelete = async (id: string) => {
         await fetch(`http://localhost:3000/orders/${id}`, {
-            method: "DELETE"
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                status: "COMPLETED"
+            })
         })
-        alert("Order deleted")
+        alert("Order completed")
     }
 
     return (
@@ -18,4 +24,4 @@ function DeleteOrder({order}: OrderProps) {
         </>
     )
 }
-export default DeleteOrder
+export default CompletedOrder

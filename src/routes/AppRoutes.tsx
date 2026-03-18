@@ -10,9 +10,6 @@ import PlanPage from "../pages/pagePlans/PlanPage";
 import NewPlan from "../pages/pagePlans/NewPlanPage";
 import EditPlan from "../pages/pagePlans/EditPlanPage";
 import PlanDetailPage from "../pages/pagePlans/PlanDetailPage";
-import OrderPage from "../pages/pageOrders/OrderPage";
-import NewOrder from "../pages/pageOrders/NewOrderPage";
-import EditOrder from "../pages/pageOrders/EditOrderPage";
 import OrderDetail from "../pages/pageOrders/OrderDetailPage";
 import ExpensePage from "../pages/pageExpense/ExpensePage";
 import NewExpense from "../pages/pageExpense/ExpenseNew";
@@ -57,9 +54,6 @@ const AppRoutes: React.FC = () => {
           <Route path="plans/:id" element={<PlanDetailPage />} />
 
           {/*Orders */}
-          <Route path="/orders" element={<OrderPage />} />
-          <Route path="/orders/new" element={<NewOrder />} />
-          <Route path="/orders/:id/update" element={<EditOrder />} />
           <Route path="/orders/:id" element={<OrderDetail />} />
 
           {/*Expense */}

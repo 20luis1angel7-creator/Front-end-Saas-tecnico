@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import type { Order } from "../../type/OrderType"
-import DeleteOrder from "../../shared/components/OrderComponent/DeleteOrder"
-
+import CompletedOrder from "../../shared/components/OrderComponent/CompletedOrder"
+import StartOrder from "../../shared/components/OrderComponent/StartOrder"
+import CancelOrder from "../../shared/components/OrderComponent/CancelOrder"
 
 function OrderDetail() {
 
@@ -29,7 +30,9 @@ function OrderDetail() {
                     <h2>{order.clientId}</h2>
                     {/*<p>{order.createdAt}</p>*/}
 
-                    <DeleteOrder order={order} />
+                    <StartOrder order={order} />
+                    <CompletedOrder order={order} />
+                    <CancelOrder order={order} />
                 </div>
             )}
         </>
