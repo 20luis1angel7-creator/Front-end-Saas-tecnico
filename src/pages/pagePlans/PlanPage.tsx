@@ -25,7 +25,7 @@ function PlanPage() {
         <>
             <h2>plan page</h2>
 
-            <Link to={`plans/new`}>
+            <Link to="/plans/new">
                 <button>create plan</button>
             </Link>
 
@@ -39,11 +39,11 @@ function PlanPage() {
                         <h2>{plan.isActive}</h2>
 
 
-                        <Link to={`plans/${plan.id}`}>
+                        <Link to={`/plans/${plan.id}`}>
                             <button>show plan</button>
                         </Link>
 
-                        <Link to={`plan/${plan.id}/edit`}>
+                        <Link to={`/plans/${plan.id}/update`}>
                             <button>edit plan</button>
                         </Link>
                     </div>

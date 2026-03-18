@@ -5,6 +5,7 @@ export type Order = {
     clientId: string,
     status: string,
     createdAt: Date,
+    completedAt?: Date
 }
 
 export type OrderProps = {

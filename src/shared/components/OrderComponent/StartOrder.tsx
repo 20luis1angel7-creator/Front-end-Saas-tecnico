@@ -3,13 +3,13 @@ import type { OrderProps } from "../../../type/OrderType"
 
 function StartOrder({order}: OrderProps) {
     const handlerStart = async (id: string) => {
-        await fetch(`http://localhost:3000/orders/${id}`,{
+        await fetch(`http://localhost:3000/orders/${id}/start`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                status: "START"
+                status: "IN_PROGRESS"
             })
         })
         alert("Order started")

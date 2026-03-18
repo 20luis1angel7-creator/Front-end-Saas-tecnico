@@ -6,13 +6,12 @@ function NewPayment() {
     const [clientId, setClientId] = useState("")
     const [invoiceId, setInvoiceId] = useState("")
     const [amount, setAmount] = useState(0)
-    const [paymentDate, setPaymentDate] = useState(Date())
-    const [createdAt, setCreatedAt] = useState(Date())
+    const [paymentDate, setPaymentDate] = useState("")
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        const res = await fetch(`http://localhost:3000/payments/pay`,{
+        const res = await fetch(`http://localhost:3000/payments/register`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -21,11 +20,10 @@ function NewPayment() {
                 clientId: clientId,
                 invoiceId: invoiceId,
                 amount: amount,
-                paymentDate: paymentDate,
-                createdAt: createdAt
+                paymentDate: paymentDate
             })
         })
-        const data = res.json()
+        const data = await res.json()
         console.log(data)
     }
 
@@ -46,14 +44,15 @@ function NewPayment() {
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))} />
 
-                <input type="text"
+                <input type="date"
                 value={paymentDate}
                 onChange={(e) => setPaymentDate(e.target.value)} />
 
-                <input type="text"
+                {/* <input type="text"
                 value={createdAt}
-                onChange={(e) => setCreatedAt(e.target.value)} />
+                onChange={(e) => setCreatedAt(e.target.value)} /> */}
 
+                <button>guardar</button>
             </form>
         </>
     )

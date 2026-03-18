@@ -70,7 +70,7 @@ const AppRoutes: React.FC = () => {
 
           {/*Invoice */}
           <Route path="invoices/clients/:clientId" element={<InvoicePage />} />
-          <Route path="Invoices/:invoiceId" element={<InvoiceDetail />} />
+          <Route path="/invoices/:invoiceId" element={<InvoiceDetail />} />
 
           {/*payments */}
           <Route path="payments/new" element={<NewPayment />} /> 

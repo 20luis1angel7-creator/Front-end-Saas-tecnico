@@ -13,7 +13,7 @@ function OrderDetail() {
 
     useEffect(() => {
         const getorder = async () => {
-            const res = await fetch(`http://localhost:3000/orders/${id}`)
+            const res = await fetch(`http://localhost:3000/orders/client/${id}`)
             const data = await res.json()
             setOrder(data)
         }
@@ -28,7 +28,9 @@ function OrderDetail() {
             {order && (
                 <div>
                     <h2>{order.clientId}</h2>
-                    {/*<p>{order.createdAt}</p>*/}
+                    <h3>{order.status}</h3>
+                    {/*<p>{order.createdAt}</p>
+                    <p>{order.completedAt}</p>*/}
 
                     <StartOrder order={order} />
                     <CompletedOrder order={order} />

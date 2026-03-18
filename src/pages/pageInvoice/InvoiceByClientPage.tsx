@@ -21,8 +21,8 @@ function InvoicePage() {
         <>
             <h2>Invoice page</h2>
 
-            {invoices.map((invoice) => {
-                <div>
+            {invoices.map((invoice) => (
+                <div key={invoice.id}>
                     <h2>{invoice.clientId}</h2>
                     <h2>{invoice.amount}</h2>
                     {/*<h2>{invoice.issueDate}</h2>
@@ -30,7 +30,7 @@ function InvoicePage() {
 
                     <PayInvoice invoice={invoice} />
                 </div>
-            })}            
+            ))}            
         </>
     )
 }

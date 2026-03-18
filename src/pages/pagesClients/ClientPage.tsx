@@ -25,7 +25,7 @@ function GetClients() {
         <>
             <h2>clients page</h2>
 
-            <Link to={"clients/new"}>
+            <Link to="clients/new">
             <button>create client</button>
             </Link>
 

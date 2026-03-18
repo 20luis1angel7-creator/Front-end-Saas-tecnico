@@ -19,7 +19,7 @@ function ExpensePage() {
         <>
             <h2>Expense page</h2>
 
-            {expenses.map((expense) => {
+            {expenses.map((expense) => (
                 <div key={expense.id}>
                     <h3>{expense.companyId}</h3>
                     <h3>{expense.description}</h3>
@@ -27,7 +27,7 @@ function ExpensePage() {
                     {/*<h3>{expense.date}</h3>
                     <h3>{expense.createdAt}</h3>*/}
                 </div>
-            })}
+            ))}
         </>
     )
 }
