@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { API_URL } from "../../api/api"
 
 
 function NewPlan() {
@@ -11,7 +12,7 @@ function NewPlan() {
         e.preventDefault()
 
         const companyId = "1"
-        const res = await fetch("http://localhost:3000/plans", {
+        const res = await fetch(`${API_URL}/plans`, {
             method: "POST", 
             headers: {
                 "Content-Type": "application/json"
@@ -24,8 +25,13 @@ function NewPlan() {
                 // created: created
             })
         })
-        const data = await res.json()
-        console.log(data)
+        if (!res.ok) {
+                alert("error create plan")
+                return
+        }
+        alert("Create client")
+        await res.json()
+
     }
 
     return (

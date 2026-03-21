@@ -1,3 +1,4 @@
+import { API_URL } from "../../../api/api";
 import type { PlanProps } from "../../../type/PlansType";
 
 
@@ -5,10 +6,15 @@ import type { PlanProps } from "../../../type/PlansType";
 function DeletePlan( {plan}: PlanProps ) {
     const planDelete = async (id: string) => {
         try {
-            await fetch(`http://localhost:3000/plans/${id}`,{
+            const res =await fetch(`${API_URL}/plans/${id}`,{
                 method: "DELETE"
             })
+            if (!res.ok) {
+                alert("Error delete plan")
+                return
+            }
             alert("Plan delete")
+            window.location.reload()
         } catch (e) {
             console.log(e)
             alert("Error al eliminar plan")

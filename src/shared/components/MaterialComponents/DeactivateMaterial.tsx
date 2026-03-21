@@ -1,10 +1,11 @@
+import { API_URL } from "../../../api/api"
 import type { MaterialProps } from "../../../type/MaterialType"
 
 
 function Deactivate( {material}: MaterialProps) {
 
     const handlerDeactivate = async () => {
-        const res = await fetch(`http://localhost:3000/materials/${material.id}/deactivate`, {
+        const res = await fetch(`${API_URL}/materials/${material.id}/deactivate`, {
             method: "PATCH",
             // headers: {
             //     "Content-Type": "application/json"

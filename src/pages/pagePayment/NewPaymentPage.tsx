@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from "../../api/api";
 
 
 
@@ -11,7 +12,7 @@ function NewPayment() {
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        const res = await fetch(`http://localhost:3000/payments/register`,{
+        const res = await fetch(`${API_URL}/payments/register`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -23,8 +24,13 @@ function NewPayment() {
                 paymentDate: paymentDate
             })
         })
-        const data = await res.json()
-        console.log(data)
+        if (!res.ok) {
+            alert("error create payment")
+            return
+        }
+        alert("Create payment")
+        await res.json()
+        
     }
 
     return (

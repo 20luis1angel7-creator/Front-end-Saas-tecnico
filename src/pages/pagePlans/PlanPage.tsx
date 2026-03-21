@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import type { Plan } from "../../type/PlansType"
 import { Link } from "react-router-dom"
+import { API_URL } from "../../api/api"
 
 
 function PlanPage() {
@@ -12,10 +13,13 @@ function PlanPage() {
     useEffect(() => {
         const getPlans = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/plans/company/${companyId}`)/*hay que arreglarlo  */
+                const res = await fetch(`${API_URL}/plans/company/${companyId}`)/*hay que arreglarlo  */
+                if (!res.ok) {
+                    alert("error loading plan")
+                    return
+                }
                 const data: Plan[] = await res.json()
                 setPlans(data)
-                console.log(data)
             } catch (e) {
                 console.error(e)
             }
@@ -55,11 +59,11 @@ function PlanPage() {
                                 <td className="px-4 py-2">{plan.createdAt ? new Date(plan.createdAt).toLocaleDateString() : "sin fecha"}</td>
 
                                 <td className="px-4 py-2 space-x-2">
-                                <Link to={`/plans/${plan.id}/edit`}>
+                                <Link to={`/plans/${plan.id}`}>
                                     <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">show plan</button>
                                 </Link>
 
-                                <Link to={`/plans/${plan.id}/update`}>
+                                <Link to={`/plans/${plan.id}/edit`}>
                                     <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">edit plan</button>
                                 </Link>
                                 </td>

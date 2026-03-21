@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import type { Invoice } from "../../type/InvoiceType"
+import { API_URL } from "../../api/api"
 
 
 function InvoiceDetail() {
@@ -8,16 +9,24 @@ function InvoiceDetail() {
     const [invoice, setInvoice] = useState<Invoice | null>(null)
 
     useEffect(() => {
-        const getinvoice = async () => {
-            const res = await fetch(`http://localhost:3000/invoice/${invoiceId}`)
-            const date = await res.json()
-            setInvoice(date)
+        const getInvoice = async () => {
+            const res = await fetch(`${API_URL}/invoices/${invoiceId}`)
+            if (!res.ok) {
+                alert("error loading invoice")
+                return
+            }
+            const data = await res.json()
+            setInvoice(data)
         }
-        getinvoice()
+        getInvoice()
     },[invoiceId])
 
     return (
         <>
+            <h2>Page invoice</h2>
+
+            {!invoice && <p>Cargando invoice...</p>}
+            
             {invoice && (
                 <div key={invoice.id}>
                     <h2>{invoice.clientId}</h2>

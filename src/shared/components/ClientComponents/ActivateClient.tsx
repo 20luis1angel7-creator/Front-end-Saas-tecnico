@@ -1,10 +1,11 @@
 
+import { API_URL } from "../../../api/api"
 import type { clientProps } from "../../../type/Client"
 
 function ActivateClient({client}: clientProps) {
 
     const activate = async ( id: string) => {
-        const res = await fetch(`http://localhost:3000/clients/${id}/activate`,{
+        const res = await fetch(`${API_URL}/clients/${id}/activate`,{
             method: "PATCH"
         })
         if (!res.ok) {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Payment } from "../../shared/components/PaymentComponents/PaymentType";
+import type { Payment } from "../../type/PaymentType";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../../api/api";
 
 
 function InvoicePayment() {
@@ -10,7 +11,11 @@ function InvoicePayment() {
 
     useEffect(() => {
         const getPayment = async () => {
-            const res = await fetch(`http://localhost:3000/payments/invoices/${invoiceId}//payments`)
+            const res = await fetch(`${API_URL}/payments/invoices/${invoiceId}`)
+            if (!res.ok) {
+                alert("error loading payment")
+                return
+            }
             const data: Payment[] = await res.json()
             setPayments(data)
         }
@@ -20,6 +25,8 @@ function InvoicePayment() {
     return (
         <>
             <h2>Invoice payment</h2>
+
+            {payments.length === 0 && <p>No hay pagos</p>}
 
             {payments.map((payment) => (
                 <div key={payment.id}>

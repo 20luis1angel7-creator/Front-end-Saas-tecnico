@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../../api/api";
 
 
 
@@ -16,14 +17,14 @@ function EditMaterial() {
     })
 
     useEffect(() => {
-        fetch(`http://localhost:3000/materials/${id}`)
+        fetch(`${API_URL}/materials/${id}`)
             .then(res => res.json())
             .then(data => setMaterial(data))
     },[id])
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        const res = await fetch(`http://localhost:3000/materials/${id}`, {
+        const res = await fetch(`${API_URL}/materials/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

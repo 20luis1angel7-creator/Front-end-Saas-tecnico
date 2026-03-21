@@ -1,9 +1,10 @@
 
+import { API_URL } from "../../../api/api"
 import type { clientProps } from "../../../type/Client"
 function Suspend({ client }: clientProps) {
 
     const suspendClient = async (id: string) => {
-        const res = await fetch(`http://localhost:3000/clients/${id}/suspend`, {
+        const res = await fetch(`${API_URL}/clients/${id}/suspend`, {
             method: "PATCH"
         })
         if (!res.ok) {

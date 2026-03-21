@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import type { Plan } from "../../type/PlansType"
 import DeletePlan from "../../shared/components/PlanComponents/DeletePlan"
+import { API_URL } from "../../api/api"
 
 
 function PlanDetailPage() {
@@ -10,7 +11,11 @@ function PlanDetailPage() {
 
     useEffect(() => {
         const getPlan = async () => {
-            const res = await fetch(`http://localhost:3000/plans/${id}`)
+            const res = await fetch(`${API_URL}/plans/${id}`)
+            if (!res.ok) {
+                alert("error loading plan")
+                return
+            }
             const data = await res.json()
             setPlan(data)
         }

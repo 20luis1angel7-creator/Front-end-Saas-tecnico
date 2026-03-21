@@ -23,14 +23,18 @@ function EditExpense() {
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        await fetch(`${API_URL}/expenses/${id}`,{
+        const res = await fetch(`${API_URL}/expenses/${id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(expense)
         })
-        alert("expense edited")
+        if (!res.ok) {
+                alert("error update client")
+                return
+        }
+        alert("Update client")
     }
 
     return (

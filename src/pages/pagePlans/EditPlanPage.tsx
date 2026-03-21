@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { API_URL } from "../../api/api"
 
 
 
@@ -14,7 +15,7 @@ function EditPlan() {
     })
 
     useEffect(() => {
-        fetch(`http://localhost:3000/plans/${id}`)
+        fetch(`${API_URL}/plans/${id}`)
             .then(res => res.json())
             .then(data => setPlan(data))
     },[id])
@@ -23,14 +24,18 @@ function EditPlan() {
         e.preventDefault()
 
         
-        await fetch(`http://localhost:3000/plans/${id}/update`, {
+        const res = await fetch(`${API_URL}/plans/${id}/update`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(plan)
         })
-        alert("Plan edited")
+        if (!res.ok) {
+                alert("error update plan")
+                return
+        }
+        alert("Update plan")
     }
 
     return (

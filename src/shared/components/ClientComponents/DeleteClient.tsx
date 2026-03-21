@@ -1,4 +1,5 @@
 
+import { API_URL } from "../../../api/api"
 import type { clientProps } from "../../../type/Client"
 
 
@@ -6,7 +7,7 @@ function EliminarClient({client}: clientProps) {
 
     const eliminar = async ( id: string) => {
         try {
-            const res = await fetch(`http://localhost:3000/clients/${id}`, {
+            const res = await fetch(`${API_URL}/clients/${id}`, {
                 method: "DELETE"
             })
             if (!res.ok) {

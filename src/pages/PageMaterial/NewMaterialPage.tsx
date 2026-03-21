@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { API_URL } from "../../api/api"
 
 
 function NewMaterial() {
@@ -11,7 +12,7 @@ function NewMaterial() {
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        const res = await fetch(`http://localhost:3000/materials`, {
+        const res = await fetch(`${API_URL}/materials`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,8 +25,13 @@ function NewMaterial() {
                 active
             })
         })
-        const data = await res.json()
-        console.log(data)
+        if (!res.ok) {
+            alert("error create material")
+            return
+        }
+        alert("Create material")
+        await res.json()
+        
     }
 
     return (

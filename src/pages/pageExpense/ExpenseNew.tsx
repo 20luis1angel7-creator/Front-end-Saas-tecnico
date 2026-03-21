@@ -24,8 +24,12 @@ function NewExpense() {
                 date: 0
             })
         })
-        const data = await res.json()
-        console.log(data)
+        if (!res.ok) {
+                alert("error ctreated expense")
+                return
+        }
+        alert("Create expense")
+        await res.json()
     }
 
     return (
