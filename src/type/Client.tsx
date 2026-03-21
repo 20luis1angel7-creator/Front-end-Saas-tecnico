@@ -8,8 +8,8 @@ export type Client = {
     address: string,
     phone: string,
     planId: string,
-    routerSerial?: string,
     status?: string
+    routerSerial?: string,
 }
 
 export type clientProps = {

@@ -1,24 +1,69 @@
 import React, { type ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
+const toggleDark = () => {
+  document.documentElement.classList.toggle("dark")
+}
+
+const companyId = "1"
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex min-h-screen flex-col bg-blue-950">
+    <div className="flex min-h-screen flex-col bg-gray-100 dark:bg-gray-900">
       {/* Header */}
-      <header className="bg-gray-900 text-white font-bold p-4">
+      <header className="flex bg-gray-300 text-black font-bold p-4 dark:bg-gray-800 dark:text-white">
         <h1>Mi App</h1>
+
+        <Link to="/clients"
+        className="mx-5">
+        <button>Clients</button>
+        </Link>
+
+        
+        <Link to={`/plans/${companyId}`}
+        className="mx-5 ">
+        <button>Plans</button>
+        </Link>
+        <Link to="/orders"
+        className="mx-5">
+        <button>Orders</button>
+        </Link>
+        <Link to="/expenses"
+        className="mx-5">
+        <button>Expenses</button>
+        </Link>
+        <Link to="/materials"
+        className="mx-5">
+        <button>Materials</button>
+        </Link>
+        <Link to="/invoices"
+        className="mx-5">
+        <button>Invoices</button>
+        </Link>
+        <Link to="/payments"
+        className="mx-5">
+        <button>Payments</button>
+        </Link>
+
+        <button 
+        onClick={toggleDark} 
+        className="bg-gray-700 px-3 py-1 rounded-4xl text-white">
+          🌙
+        </button>
       </header>
 
       {/* Main content */}
       <main className="flex-1 p-4 text-amber-50">
         {children}
       </main>
+      
 
       {/* Footer */}
-      <footer className="bg-gray-500 text-center p-4">
+      <footer className="bg-gray-400 text-center text-black p-4 dark:text-white">
         © 2026 Mi App
       </footer>
     </div>

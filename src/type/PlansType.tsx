@@ -5,7 +5,7 @@ export type Plan = {
     price: number;
     speed: number;
     isActive?: boolean;
-    createdAt?: Date;
+    createdAt?: string;
 };
 export type PlanProps = {
     plan: Plan

@@ -6,10 +6,15 @@ function EliminarClient({client}: clientProps) {
 
     const eliminar = async ( id: string) => {
         try {
-            await fetch(`http://localhost:3000/clients/${id}`, {
+            const res = await fetch(`http://localhost:3000/clients/${id}`, {
                 method: "DELETE"
             })
-            alert("Cliente eliminado")
+            if (!res.ok) {
+                alert("Error delete client")
+                return
+            }
+            alert("Client delete")
+            window.location.reload()
         } catch (e) {
             console.error(e)
             alert("Error al eliminar cliente")
@@ -17,8 +22,9 @@ function EliminarClient({client}: clientProps) {
     }
     return (
         <>
-            <button onClick={() => eliminar(client.id)}>
-                eliminar
+            <button onClick={() => eliminar(client.id)} 
+            className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-red-400">
+                Delete
             </button>
         </>
     )

@@ -4,22 +4,28 @@ import type { MaterialProps } from "../../../type/MaterialType"
 function Deactivate( {material}: MaterialProps) {
 
     const handlerDeactivate = async () => {
-        await fetch(`http://localhost:3000/materials/${material.id}/deactivate`, {
+        const res = await fetch(`http://localhost:3000/materials/${material.id}/deactivate`, {
             method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                active: true
-            })
+            // headers: {
+            //     "Content-Type": "application/json"
+            // },
+            // body: JSON.stringify({
+            //     active: true
+            // })
         })
+        if (!res.ok) {
+            alert("Error deactivate")
+            return
+        }
+
+        alert("Material deactivate")
     }
 
     return (
         <>
 
             <button onClick={handlerDeactivate}>
-                guardar
+                Deactivate
             </button>
         </>
     )

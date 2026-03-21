@@ -17,11 +17,11 @@ function NewMaterial() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: name,
-                stock: stock,
-                minStock: minStock,
-                unitPrice: unitPrice,
-                active: active
+                name,
+                stock,
+                minStock,
+                unitPrice,
+                active
             })
         })
         const data = await res.json()
@@ -33,30 +33,36 @@ function NewMaterial() {
 
             <h2>create material</h2>
 
-            <form onChange={handlerSubmit}>
+            <form onSubmit={handlerSubmit}>
                 <input type="text"
                 placeholder="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)} />
 
-                <input type="text"
+                <input type="number"
                 placeholder="stock"
                 value={stock}
                 onChange={(e) => setStock(Number(e.target.value))} />
 
-                <input type="text"
+                <input type="number"
                 placeholder="minStock"
                 value={minStock}
                 onChange={(e) => setMinStock(Number(e.target.value))} />
 
-                <input type="text"
+                <input type="number"
                 placeholder="unitPrice"
                 value={unitPrice}
                 onChange={(e) => setUnitPrice(Number(e.target.value))} />
 
-                <input type="boolean"
-                placeholder="active" 
-                onChange={(e) => setActive(Boolean(e.target.value))} />
+                
+                <label>
+                    Active
+                    <input
+                        type="checkbox"
+                        checked={active}
+                        onChange={(e) => setActive(e.target.checked)}
+                    />
+                </label>
 
                 <button>guardar</button>
             </form>

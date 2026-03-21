@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -21,14 +21,20 @@ function EditMaterial() {
             .then(data => setMaterial(data))
     },[id])
 
-    const handlerSubmit = async () => {
-        fetch(`http://localhost:3000/materials/${id}`, {
+    const handlerSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        const res = await fetch(`http://localhost:3000/materials/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(material)
         })
+        if(!res.ok) {
+            alert("Error al actualizar material")
+            return
+        }
+        alert("Material actualizado")
     } 
 
     return (
@@ -58,10 +64,15 @@ function EditMaterial() {
                     setMaterial({ ...material, unitPrice: Number(e.target.value)})
                 } />
 
-                <input type="text"
+                <input type="checkbox"
+                checked={material.active}
                 onChange={(e) => 
-                    setMaterial({ ...material, active: Boolean(e.target.value)})
+                    setMaterial({ ...material, active: e.target.checked})
                 } />
+
+                <button type="submit">
+                    Guardar
+                </button>
             </form>
         </>
     )

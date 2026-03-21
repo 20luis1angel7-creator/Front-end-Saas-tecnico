@@ -1,7 +1,7 @@
 
 export type ExpenseType = 
 | "EMPLOYEE"
-| "PROCIDER"
+| "PROVIDER"
 | "MATERIAL"
 | "MAINTENANCE"
 

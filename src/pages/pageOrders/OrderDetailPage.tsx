@@ -4,6 +4,7 @@ import type { Order } from "../../type/OrderType"
 import CompletedOrder from "../../shared/components/OrderComponent/CompletedOrder"
 import StartOrder from "../../shared/components/OrderComponent/StartOrder"
 import CancelOrder from "../../shared/components/OrderComponent/CancelOrder"
+import { API_URL } from "../../api/api"
 
 function OrderDetail() {
 
@@ -13,18 +14,23 @@ function OrderDetail() {
 
     useEffect(() => {
         const getorder = async () => {
-            const res = await fetch(`http://localhost:3000/orders/client/${id}`)
+            const res = await fetch(`${API_URL}/orders/${id}`)
+            if (!res.ok) {
+                alert("error loading order")
+                return
+            }
             const data = await res.json()
             setOrder(data)
         }
     getorder()
     },[id])
-    console.log(id)
 
     return (
         <>
-            <h2>Order detail</h2>
+            <h1 className="font-bold text-back px-4 py-2 text-black dark:text-white">Orders details</h1>
 
+            {!order && <p>Loading... </p>}
+            
             {order && (
                 <div>
                     <h2>{order.clientId}</h2>

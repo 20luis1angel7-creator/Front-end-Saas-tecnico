@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import type { Expense } from "../../type/ExpenseType"
+import { API_URL } from "../../api/api"
 
 
 
@@ -12,7 +13,11 @@ function ExpenseDetail() {
 
     useEffect(() => {
         const getExpense = async () => {
-            const res = await fetch(`http://localhost:3000/expenses/${id}`)
+            const res = await fetch(`${API_URL}/expenses/${id}`)
+            if (!res.ok) {
+                alert("Error loading expense")
+                return
+            }
             const data = await res.json()
             setExpense(data)
         }
@@ -24,6 +29,8 @@ function ExpenseDetail() {
             <h2>expense detail</h2>
             <p>expense {id}</p>
 
+            {!expense && <p>Cargando expense...</p>}
+            
             {expense && (
                 <div>
                     <h3>{expense.description}</h3>

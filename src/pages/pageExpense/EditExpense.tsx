@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { API_URL } from "../../api/api"
 
 
 
@@ -14,7 +15,7 @@ function EditExpense() {
     })
 
     useEffect(() => {
-        fetch(`http://localhost:3000/expenses/${id}`)
+        fetch(`${API_URL}/expenses/${id}`)
             .then(res => res.json())
             .then(data => setExpense(data))
     },[id])
@@ -22,7 +23,7 @@ function EditExpense() {
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        await fetch(`http://localhost:3000/expenses/${id}`,{
+        await fetch(`${API_URL}/expenses/${id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

@@ -23,11 +23,12 @@ import InvoiceDetail from "../pages/pageInvoice/InvoiceDetailPage";
 import InvoicePage from "../pages/pageInvoice/InvoiceByClientPage";
 import InvoicePayment from "../pages/pagePayment/InvoicePaymentPage";
 import NewPayment from "../pages/pagePayment/NewPaymentPage";
+import OrderPage from "../pages/pageOrders/OrderPage";
 
 
 
 // Páginas simples
-const HomePage = () => <div>Página de inicio</div>;
+const HomePage = () => <div className="text-black dark:text-white">Página de inicio</div>;
 const AboutPage = () => <div>Acerca de</div>;
 
 
@@ -48,33 +49,34 @@ const AppRoutes: React.FC = () => {
           <Route path="/clients/:id/edit" element={<EditClient />} />
 
           {/*Plans*/}
-          <Route path="/plans" element={<PlanPage />} />
+          <Route path="/plans/:companyId" element={<PlanPage />} />
           <Route path="/plans/new" element={<NewPlan />} />
-          <Route path="/plans/:id/update" element={<EditPlan />} />
-          <Route path="plans/:id" element={<PlanDetailPage />} />
+          <Route path="/plans/:id/edit" element={<EditPlan />} />
+          <Route path="/plans/:id" element={<PlanDetailPage />} />
 
           {/*Orders */}
           <Route path="/orders/:id" element={<OrderDetail />} />
+          <Route path="/orders" element={<OrderPage />} />
 
           {/*Expense */}
-          <Route path="expenses/" element={<ExpensePage />} />
-          <Route path="expenses/new" element={<NewExpense />} />
-          <Route path="expenses/:id/update" element={<EditExpense />} />
-          <Route path="expenses/:id" element={<ExpenseDetail />} />
+          <Route path="/expenses" element={<ExpensePage />} />
+          <Route path="/expenses/new" element={<NewExpense />} />
+          <Route path="/expenses/:id/update" element={<EditExpense />} />
+          <Route path="/expenses/:id" element={<ExpenseDetail />} />
 
           {/*Materials */}
-          <Route path="materials/" element={<MaterialPage />} />
-          <Route path="materials/new" element={<NewMaterial />} />
-          <Route path="materials/:id/update" element={<EditMaterial />} />
-          <Route path="materials/:id" element={<MaterialDetail />} />
+          <Route path="/materials" element={<MaterialPage />} />
+          <Route path="/materials/new" element={<NewMaterial />} />
+          <Route path="/materials/:id/update" element={<EditMaterial />} />
+          <Route path="/materials/:id" element={<MaterialDetail />} />
 
           {/*Invoice */}
-          <Route path="invoices/clients/:clientId" element={<InvoicePage />} />
+          <Route path="/invoices/clients/:clientId" element={<InvoicePage />} />
           <Route path="/invoices/:invoiceId" element={<InvoiceDetail />} />
 
           {/*payments */}
-          <Route path="payments/new" element={<NewPayment />} /> 
-          <Route path="payments/invoices/:invoiceId" element={<InvoicePayment />} />
+          <Route path="/payments/new" element={<NewPayment />} /> 
+          <Route path="/payments/invoices/:invoiceId" element={<InvoicePayment />} />
         </Routes>
       </Layout>
     </Router>

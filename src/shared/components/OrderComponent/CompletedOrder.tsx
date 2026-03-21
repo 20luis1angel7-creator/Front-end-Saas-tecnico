@@ -1,25 +1,26 @@
+import { API_URL } from "../../../api/api"
 import type { OrderProps } from "../../../type/OrderType"
 
 
 function CompletedOrder({order}: OrderProps) {
     
-    const orderDelete = async (id: string) => {
-        await fetch(`http://localhost:3000/orders/${id}/complete`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                status: "COMPLETED"
-            })
+    const orderComplete = async (id: string) => {
+        const res = await fetch(`${API_URL}/orders/${id}/complete`, {
+            method: "PATCH"
         })
+        if (!res.ok) {
+            alert("Error in complete")
+            return
+        }
         alert("Order completed")
+        window.location.reload()
     }
 
     return (
         <>
-            <button onClick={() => orderDelete(order.id)}>
-                Delete
+            <button onClick={() => orderComplete(order.id)}
+            className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-gray-400">
+                Complete
             </button>
         </>
     )

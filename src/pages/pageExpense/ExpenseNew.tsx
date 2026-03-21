@@ -1,4 +1,5 @@
 import React, {useState } from "react";
+import { API_URL } from "../../api/api";
 
 
 
@@ -12,7 +13,7 @@ function NewExpense() {
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        const res = await fetch(`http://localhost:3000/expenses`, {
+        const res = await fetch(`${API_URL}/expenses`, {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
