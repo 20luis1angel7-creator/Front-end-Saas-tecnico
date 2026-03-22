@@ -19,10 +19,6 @@ import MaterialPage from "../pages/PageMaterial/MaterialPage";
 import MaterialDetail from "../pages/PageMaterial/MaterialDetailPage";
 import NewMaterial from "../pages/PageMaterial/NewMaterialPage";
 import EditMaterial from "../pages/PageMaterial/EditMaterialPage";
-import InvoiceDetail from "../pages/pageInvoice/InvoiceDetailPage";
-import InvoicePage from "../pages/pageInvoice/InvoiceByClientPage";
-import InvoicePayment from "../pages/pagePayment/InvoicePaymentPage";
-import NewPayment from "../pages/pagePayment/NewPaymentPage";
 import OrderPage from "../pages/pageOrders/OrderPage";
 
 
@@ -49,7 +45,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/clients/:id/edit" element={<EditClient />} />
 
           {/*Plans*/}
-          <Route path="/plans/:companyId" element={<PlanPage />} />
+          <Route path="/plans" element={<PlanPage />} />
           <Route path="/plans/new" element={<NewPlan />} />
           <Route path="/plans/:id/edit" element={<EditPlan />} />
           <Route path="/plans/:id" element={<PlanDetailPage />} />
@@ -69,14 +65,6 @@ const AppRoutes: React.FC = () => {
           <Route path="/materials/new" element={<NewMaterial />} />
           <Route path="/materials/:id/update" element={<EditMaterial />} />
           <Route path="/materials/:id" element={<MaterialDetail />} />
-
-          {/*Invoice */}
-          <Route path="/invoices/clients/:clientId" element={<InvoicePage />} />
-          <Route path="/invoices/:invoiceId" element={<InvoiceDetail />} />
-
-          {/*payments */}
-          <Route path="/payments/new" element={<NewPayment />} /> 
-          <Route path="/payments/invoices/:invoiceId" element={<InvoicePayment />} />
         </Routes>
       </Layout>
     </Router>

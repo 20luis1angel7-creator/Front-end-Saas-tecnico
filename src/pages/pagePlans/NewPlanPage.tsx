@@ -11,14 +11,12 @@ function NewPlan() {
     const createPlan = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        const companyId = "1"
         const res = await fetch(`${API_URL}/plans`, {
             method: "POST", 
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify ({
-                companyId: companyId,
                 name: name,
                 price: price,
                 speed: speed,
@@ -26,10 +24,10 @@ function NewPlan() {
             })
         })
         if (!res.ok) {
-                alert("error create plan")
+                alert("Error create plan")
                 return
         }
-        alert("Create client")
+        alert("Create plan")
         await res.json()
 
     }
@@ -70,7 +68,7 @@ function NewPlan() {
                 onChange={(e) => setCreated(new Date(e.target.value))} /> */}
 
                 <button className="flex font-bold m-6 px-3 py-1 h-9 w-21 rounded text-white  bg-gray-700 dark:bg-blue-700">
-                    guardar
+                    Save
                 </button>
             </form>
         </>

@@ -9,9 +9,6 @@ const toggleDark = () => {
   document.documentElement.classList.toggle("dark")
 }
 
-const companyId = "1"
-const clientId = "1"
-const invoiceId = "1"
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
@@ -26,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </Link>
 
         
-        <Link to={`/plans/${companyId}`}
+        <Link to={`/plans`}
         className="mx-5 ">
         <button>Plans</button>
         </Link>
@@ -41,14 +38,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Link to="/materials"
         className="mx-5">
         <button>Materials</button>
-        </Link>
-        <Link to={`/invoices/clients/${clientId}`}
-        className="mx-5">
-        <button>Invoices</button>
-        </Link>
-        <Link to={`/payments/invoices/${invoiceId}`}
-        className="mx-5">
-        <button>Payments</button>
         </Link>
 
         <button 

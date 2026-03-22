@@ -49,7 +49,7 @@ function NewExpense() {
                 value={date}
                 onChange={(e) => setDate(e.target.value)} />
             
-                <button>guardar</button>
+                <button>Save</button>
             </form>
         </>
     )

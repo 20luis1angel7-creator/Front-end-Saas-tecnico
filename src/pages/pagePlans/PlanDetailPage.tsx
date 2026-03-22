@@ -13,6 +13,8 @@ function PlanDetailPage() {
         const getPlan = async () => {
             const res = await fetch(`${API_URL}/plans/${id}`)
             if (!res.ok) {
+                const errorText = await res.text()
+                console.log("PLAN DETAIL ERROR:", errorText)
                 alert("error loading plan")
                 return
             }

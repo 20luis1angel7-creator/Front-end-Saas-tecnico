@@ -30,11 +30,10 @@ function ExpensePage() {
 
             {expenses.map((expense) => (
                 <div key={expense.id}>
-                    <h3>{expense.companyId}</h3>
                     <h3>{expense.description}</h3>
                     <h3>{expense.amount}</h3>
-                    {/*<h3>{expense.date}</h3>
-                    <h3>{expense.createdAt}</h3>*/}
+                    <h3>{new Date(expense.date).toLocaleDateString()}</h3>
+                    <h3>{new Date(expense.createdAt).toLocaleDateString()}</h3>
 
                     <Link to={`/expenses/${expense.id}`}>
                     <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">show expense</button>

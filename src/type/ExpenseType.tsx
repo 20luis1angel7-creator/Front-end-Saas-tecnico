@@ -7,7 +7,6 @@ export type ExpenseType =
 
 export type Expense = {
     id: string,
-    companyId: string;
     type: ExpenseType;
     description: string;
     amount: number;

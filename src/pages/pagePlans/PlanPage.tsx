@@ -9,12 +9,14 @@ function PlanPage() {
 
     const [plans, setPlans] = useState<Plan[]>([])
 
-    const companyId = "1"
+   
     useEffect(() => {
         const getPlans = async () => {
             try {
-                const res = await fetch(`${API_URL}/plans/company/${companyId}`)/*hay que arreglarlo  */
+                const res = await fetch(`${API_URL}/plans`)
                 if (!res.ok) {
+                    const errorText = await res.text()
+                    console.log("PLAN LIST ERROR:", errorText)
                     alert("error loading plan")
                     return
                 }

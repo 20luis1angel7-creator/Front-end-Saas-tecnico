@@ -35,8 +35,8 @@ function ExpenseDetail() {
                 <div>
                     <h3>{expense.description}</h3>
                     <h3>{expense.amount}</h3>
-                    {/*<h3>{expense.date}</h3>
-                    <h3>{expense.createdAt}</h3>*/}
+                    <h3>{new Date(expense.date).toLocaleDateString()}</h3>
+                    <h3>{new Date(expense.createdAt).toLocaleDateString()}</h3>
                 </div>
             )}
         </>

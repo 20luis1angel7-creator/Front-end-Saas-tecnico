@@ -35,8 +35,8 @@ function OrderDetail() {
                 <div>
                     <h2>{order.clientId}</h2>
                     <h3>{order.status}</h3>
-                    {/*<p>{order.createdAt}</p>
-                    <p>{order.completedAt}</p>*/}
+                    <p>{new Date(order.createdAt).toLocaleDateString()}</p>
+                    <p>{order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "sin fecha"}</p>
 
                     <StartOrder order={order} />
                     <CompletedOrder order={order} />
