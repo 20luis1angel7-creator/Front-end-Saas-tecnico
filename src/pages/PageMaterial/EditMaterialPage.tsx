@@ -24,15 +24,17 @@ function EditMaterial() {
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        const res = await fetch(`${API_URL}/materials/${id}`, {
+        const res = await fetch(`${API_URL}/materials/${id}/update`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(material)
         })
-        if(!res.ok) {
-            alert("Error al actualizar material")
+        if (!res.ok) {
+            const errorText = await res.text()
+            console.log("MATERIAL UPDATE ERROR:", errorText)
+            alert("Error loading materials")
             return
         }
         alert("Material actualizado")

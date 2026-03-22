@@ -13,11 +13,14 @@ function MaterialDetail() {
         const getMaterial = async () => {
             const res = await fetch(`${API_URL}/materials/${id}`)
             if (!res.ok) {
-                alert("Error loading material")
+                const errorText = await res.text()
+                console.log("MATERIAL DETAIL ERROR:", errorText)
+                alert("Error loading materials")
                 return
             }
 
             const data = await res.json()
+            console.log("MATERIAL LIST DATA:", data)
             setMaterial(data)
         }
         getMaterial()

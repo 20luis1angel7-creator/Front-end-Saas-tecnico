@@ -6,16 +6,18 @@ import { API_URL } from "../../api/api"
 function MaterialPage() {
     const [materials, setMaterials] = useState<Material[]>([])
 
-    const companyId = "1"
     useEffect(()=> {
         const getMaterial = async () => {
-            const res = await fetch(`${API_URL}/materials/company/${companyId}/materials`)
+            const res = await fetch(`${API_URL}/materials`)
             if (!res.ok) {
+                const errorText = await res.text()
+                console.log("MATERIAL LIST ERROR:", errorText)
                 alert("Error loading materials")
                 return
             }
 
             const data: Material[] = await res.json()
+            console.log("MATERIAL LIST DATA:", data)
             setMaterials(data)
         }
     getMaterial()

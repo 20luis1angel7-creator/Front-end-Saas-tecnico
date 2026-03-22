@@ -25,22 +25,44 @@ function OrderPage() {
 
     return (
         <>
-            <h2>Orders page</h2>
+            <h2 className="bg-gray-700 text-white rounded px-4 py-2 my-5 hover:bg-gray-600 dark:bg-blue-700 dark:hover:text-gray-200">Orders page</h2>
 
             <section>
+                <table className="min-w-full text-sm text-left text-gray-300 border border-gray-700 dark:text-gray-200 ">
+                    <thead className="bg-gray-400 text-black uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
+                        <tr>
+
+                        <th className="px-4 py-2">status</th>
+                        <th className="px-4 py-2">name</th>
+                        <th className="px-4 py-2">cedula</th>
+                        <th className="px-4 py-2">address</th>
+                        <th className="px-4 py-2">phone</th>
+                        <th className="px-4 py-2">planId</th>
+                        <th className="px-4 py-2">routerSerial</th>
+                        <th className="px-4 py-2">acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="bg-white dark:bg-gray-900">
+
                 {orders.map(order => (
-                    <div key={order.id}>
-                        <h2>{order.clientId}</h2>
-                        <h3>{order.status}</h3>
-                        <h3>{new Date(order.createdAt).toLocaleDateString()}</h3>
-                        <h3>{order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "sin fecha"}</h3>
+                    <tr key={order.id} className="border-b text-black border-gray-700 hover:bg-gray-100  dark:text-white dark:hover:bg-gray-800">
+                            
+                        
+                        <td className="px-4 py-2">{order.status}</td>
+                        <td className="px-4 py-2">{order.clientId}</td>
+                        <td className="px-4 py-2">{new Date(order.createdAt).toLocaleDateString()}</td>
+                        <td className="px-4 py-2">{order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "sin fecha"}</td>
 
-
-                        <Link to={`/orders/${order.id}`}>
-                            <button>Show detail</button>
-                        </Link>
-                    </div>
+                        <td className="px-4 py-2 space-x-2">
+                            <Link to={`/orders/${order.id}`}>
+                                <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">Show detail</button>
+                            </Link>
+                        </td>
+                    </tr>
                 ))}
+                  </tbody>
+                </table>
             </section>
         </>
     )
