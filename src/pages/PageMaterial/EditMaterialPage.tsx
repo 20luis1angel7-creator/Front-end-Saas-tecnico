@@ -42,39 +42,51 @@ function EditMaterial() {
 
     return (
         <>
-            <form onSubmit={handlerSubmit}>
+            <form onSubmit={handlerSubmit}
+            className="flex flex-col px-4 py-4 text-black dark:text-gray-200">
+                <h3>Name:</h3>
                 <input type="text"
+                className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={material.name} 
                 onChange={(e) =>
                     setMaterial({ ...material, name: e.target.value})
                 }/>
 
+                <h3>Stock:</h3>
                 <input type="number"
+                className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={material.stock}
                 onChange={(e) => 
                     setMaterial({ ...material, stock: Number(e.target.value)})
                 } />
 
+                <h3>MinStock:</h3>
                 <input type="number"
+                className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={material.minStock}
                 onChange={(e) => 
                     setMaterial({ ...material, minStock: Number(e.target.value)})
                 } />
 
+                <h3>Unit Price:</h3>
                 <input type="number"
+                className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={material.unitPrice}
                 onChange={(e) => 
                     setMaterial({ ...material, unitPrice: Number(e.target.value)})
                 } />
 
+                <h3>Active:</h3>
                 <input type="checkbox"
+                className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 checked={material.active}
                 onChange={(e) => 
                     setMaterial({ ...material, active: e.target.checked})
                 } />
 
-                <button type="submit">
-                    Guardar
+                <button type="submit"
+                className="flex font-bold m-6 px-3 py-1 h-9 w-24 rounded text-white  bg-gray-700 dark:bg-blue-700">
+                    Save
                 </button>
             </form>
         </>

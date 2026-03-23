@@ -30,8 +30,7 @@ function ClientDetailPage() {
     return (
         <>
             <h1 className="font-bold px-4 py-2 text-black dark:text-white">Client details</h1>
-            <h2 className="font-bold px-4 py-2 text-black dark:text-white">cliente {id}</h2>
-
+        
             {!client && <p>Cargando client...</p>}
 
             {client && (

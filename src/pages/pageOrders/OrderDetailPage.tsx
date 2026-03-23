@@ -35,8 +35,8 @@ function OrderDetail() {
             
             {order && (
                 <div className="font-bold px-4 py-2 text-black dark:text-white">
-                    <h3 className="py-1">Client id:</h3>
-                    <h3 className="dark:bg-gray-900 w-100 ps-15">{order.clientId}</h3>
+                    {/* <h3 className="py-1">Client id:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{order.clientId}</h3> */}
                     <h3 className="py-1">Status:</h3>
                     <h3 className="dark:bg-gray-900 w-100 ps-15">{order.status}</h3>
                     <h3 className="py-1">create:</h3>

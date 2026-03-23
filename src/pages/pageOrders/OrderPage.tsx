@@ -26,7 +26,8 @@ function OrderPage() {
 
     return (
         <>
-            <h2 className="bg-gray-700 text-white rounded px-4 py-2 my-5 hover:bg-gray-600 dark:bg-blue-700 dark:hover:text-gray-200">Orders page</h2>
+            <h2 className="bg-gray-700 text-white rounded px-4 py-2 my-5 hover:bg-gray-600 dark:bg-blue-700 dark:hover:text-gray-200">
+                Orders page</h2>
 
             <section>
                 <table className="min-w-full text-sm text-left text-gray-300 border border-gray-700 dark:text-gray-200 ">

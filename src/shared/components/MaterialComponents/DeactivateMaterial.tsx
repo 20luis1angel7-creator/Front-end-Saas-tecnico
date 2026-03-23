@@ -25,7 +25,8 @@ function Deactivate( {material}: MaterialProps) {
     return (
         <>
 
-            <button onClick={handlerDeactivate}>
+            <button onClick={handlerDeactivate}
+            className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-gray-700">
                 Deactivate
             </button>
         </>

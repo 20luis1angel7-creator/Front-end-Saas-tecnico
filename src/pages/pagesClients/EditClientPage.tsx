@@ -58,7 +58,7 @@ function EditClient() {
             className="flex flex-col px-4 py-4 text-black dark:text-gray-200">
                 <h3>Name:</h3>
                 <input 
-                className="bg-gray-300 w-full border border-gray-300 dark:text-black"
+                className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={client.name}
                 onChange={(e) => 
                     setClient({...client, name: e.target.value})

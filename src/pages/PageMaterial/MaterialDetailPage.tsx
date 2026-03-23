@@ -28,20 +28,27 @@ function MaterialDetail() {
 
     return ( 
         <>
-            <h2>detail materials</h2>
-            <h2>material id: {id}</h2>
+            <h2 className="font-bold px-4 py-2 text-black dark:text-white">detail materials</h2>
+            {/* <h2>material id: {id}</h2> */}
 
             {!material && <p>Cargando material...</p>}
 
             {material && (
-                <div>
-                    <h3>{material.name}</h3>
-                    <h3>{material.stock}</h3>
-                    <h3>{material.minStock}</h3>
-                    <h3>{material.unitPrice}</h3>
-                    <h3>{material.active ? "Active" : "Deactive"}</h3>
+                <div className="font-bold px-4 py-2 text-black dark:text-white">
+                    <h3 className="py-1">Name:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{material.name}</h3>
+                    <h3 className="py-1">Stock:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{material.stock}</h3>
+                    <h3 className="py-1">MinStock:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{material.minStock}</h3>
+                    <h3 className="py-1">Unit Price:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{material.unitPrice}</h3>
+                    <h3 className="py-1">Active:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{material.active ? "Active" : "Deactive"}</h3>
                     
-                    <Deactivate  material={material}/>
+                    <div className="py-5">
+                        <Deactivate  material={material}/>
+                    </div>
                     
                 </div>
             )}

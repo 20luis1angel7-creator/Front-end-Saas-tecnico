@@ -25,7 +25,8 @@ function DeleteExpense({expense}: ExpenseProps) {
 
     return (
         <>
-            <button onClick={() => deleteE(expense.id)}>
+            <button onClick={() => deleteE(expense.id)}
+                className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-red-400">
                 Delete
             </button>
         </>

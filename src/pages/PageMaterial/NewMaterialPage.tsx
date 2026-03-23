@@ -37,25 +37,34 @@ function NewMaterial() {
     return (
         <>
 
-            <h2>create material</h2>
+            <h2 className="font-bold text-black dark:text-white m-5">create material</h2>
 
-            <form onSubmit={handlerSubmit}>
-                <input type="text"
+            <form onSubmit={handlerSubmit}
+            className="flex flex-col text-black px-4 py-4 dark:text-gray-200">
+                <h3 className="font-bold pb-2">Name:</h3> 
+                <input 
+                className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
                 placeholder="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)} />
 
-                <input type="number"
+                 <h3 className="font-bold pb-2">Nickname:</h3>
+                <input 
+                className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
                 placeholder="stock"
                 value={stock}
                 onChange={(e) => setStock(Number(e.target.value))} />
 
-                <input type="number"
+                 <h3 className="font-bold pb-2">Nickname:</h3>
+                <input 
+                className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
                 placeholder="minStock"
                 value={minStock}
                 onChange={(e) => setMinStock(Number(e.target.value))} />
 
-                <input type="number"
+                 <h3 className="font-bold pb-2">Nickname:</h3>
+                <input 
+                className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
                 placeholder="unitPrice"
                 value={unitPrice}
                 onChange={(e) => setUnitPrice(Number(e.target.value))} />
@@ -70,7 +79,9 @@ function NewMaterial() {
                     />
                 </label>
 
-                <button>guardar</button>
+                <button className="flex font-bold m-6 px-3 py-1 h-9 w-21 rounded text-white  bg-gray-700 dark:bg-blue-700">
+                    Save
+                </button>
             </form>
         </>
     )
