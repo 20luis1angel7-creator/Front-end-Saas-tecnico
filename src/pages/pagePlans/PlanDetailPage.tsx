@@ -28,7 +28,7 @@ function PlanDetailPage() {
     return (
         <>
             <h1 className="font-bold px-4 py-2 text-black dark:text-white">Plan details</h1>
-            <h2 className="font-bold px-4 py-2 text-black dark:text-white">Plan {id}</h2>
+            {/* <h2 className="font-bold px-4 py-2 text-black dark:text-white">Plan {id}</h2> */}
             
             {!plan && <p>Cargando plan...</p>}
 

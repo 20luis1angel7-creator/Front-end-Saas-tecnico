@@ -23,7 +23,7 @@ function NewExpense() {
                 type,
                 description,
                 amount,
-                date: new Date().toDateString(),
+                date,
                 createdAt: new Date().toISOString()
             })
         })
@@ -32,7 +32,6 @@ function NewExpense() {
                 return
         }
         alert("Create expense")
-        await res.json()
     }
 
     return (
@@ -56,7 +55,7 @@ function NewExpense() {
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))} />
 
-                <input type="text"
+                <input type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)} />
             
