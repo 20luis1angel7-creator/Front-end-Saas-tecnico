@@ -26,7 +26,7 @@ function OrderPage() {
 
     return (
         <>
-            <h2 className="bg-gray-700 text-white rounded px-4 py-2 my-5 hover:bg-gray-600 dark:bg-blue-700 dark:hover:text-gray-200">
+            <h2 className=" text-black dark:text-white px-5 p-5 ">
                 Orders page</h2>
 
             <section>
@@ -34,13 +34,10 @@ function OrderPage() {
                     <thead className="bg-gray-400 text-black uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
                         <tr>
 
-                        <th className="px-4 py-2">status</th>
-                        <th className="px-4 py-2">name</th>
-                        <th className="px-4 py-2">cedula</th>
-                        <th className="px-4 py-2">address</th>
-                        <th className="px-4 py-2">phone</th>
-                        <th className="px-4 py-2">planId</th>
-                        <th className="px-4 py-2">routerSerial</th>
+                        <th className="px-4 py-2">Status</th>
+                        <th className="px-4 py-2">Name</th>
+                        <th className="px-4 py-2">Create</th>
+                        <th className="px-4 py-2">Complete</th>
                         <th className="px-4 py-2">acciones</th>
                         </tr>
                     </thead>

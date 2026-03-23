@@ -20,7 +20,7 @@ import MaterialDetail from "../pages/PageMaterial/MaterialDetailPage";
 import NewMaterial from "../pages/PageMaterial/NewMaterialPage";
 import EditMaterial from "../pages/PageMaterial/EditMaterialPage";
 import OrderPage from "../pages/pageOrders/OrderPage";
-
+import RegisterMaterialPurchasePage from "../pages/pageExpense/expenseMaterialPurchesa";
 
 
 // Páginas simples
@@ -59,6 +59,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/expenses/new" element={<NewExpense />} />
           <Route path="/expenses/:id/update" element={<EditExpense />} />
           <Route path="/expenses/:id" element={<ExpenseDetail />} />
+          <Route path="/materials/purchase" element={<RegisterMaterialPurchasePage />} />
 
           {/*Materials */}
           <Route path="/materials" element={<MaterialPage />} />

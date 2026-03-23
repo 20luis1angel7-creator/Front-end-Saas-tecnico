@@ -48,21 +48,21 @@ function NewMaterial() {
                 value={name}
                 onChange={(e) => setName(e.target.value)} />
 
-                 <h3 className="font-bold pb-2">Nickname:</h3>
+                 <h3 className="font-bold pb-2">Stock:</h3>
                 <input 
                 className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
                 placeholder="stock"
                 value={stock}
                 onChange={(e) => setStock(Number(e.target.value))} />
 
-                 <h3 className="font-bold pb-2">Nickname:</h3>
+                 <h3 className="font-bold pb-2">MinStock:</h3>
                 <input 
                 className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
                 placeholder="minStock"
                 value={minStock}
                 onChange={(e) => setMinStock(Number(e.target.value))} />
 
-                 <h3 className="font-bold pb-2">Nickname:</h3>
+                 <h3 className="font-bold pb-2">Unit Price:</h3>
                 <input 
                 className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
                 placeholder="unitPrice"
