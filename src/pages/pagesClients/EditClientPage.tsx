@@ -9,7 +9,7 @@ function EditClient() {
     const [client, setClient] = useState({
         name:"",
         nickname:"",
-        cedula:"",
+        // cedula:"",
         address: "",
         phone: "",
         planId:"",
@@ -34,7 +34,7 @@ function EditClient() {
         e.preventDefault()
 
         const res = await fetch(`${API_URL}/clients/${id}`, {
-            method: "PATCH",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -72,13 +72,13 @@ function EditClient() {
                     setClient({ ...client, nickname: e.target.value})
                 } />
 
-                <h3>Cedula:</h3>
+                {/* <h3>Cedula:</h3>
                 <input 
                 className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={client.cedula}
                 onChange={(e) => 
                     setClient({ ...client, cedula: e.target.value})
-                } />
+                } /> */}
 
                 <h3>Address:</h3>
                 <input 

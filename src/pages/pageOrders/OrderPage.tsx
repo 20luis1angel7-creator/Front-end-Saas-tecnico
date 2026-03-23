@@ -18,6 +18,7 @@ function OrderPage() {
                 return
             }
             const data: Order[] = await res.json()
+            console.log("ORDER LIST DATA:", data)
             setOrders(data)
         }
         getOrders()
@@ -56,7 +57,8 @@ function OrderPage() {
 
                         <td className="px-4 py-2 space-x-2">
                             <Link to={`/orders/${order.id}`}>
-                                <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">Show detail</button>
+                                <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">
+                                    Show detail</button>
                             </Link>
                         </td>
                     </tr>

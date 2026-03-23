@@ -57,7 +57,7 @@ function PlanPage() {
                                 <td className="px-4 py-2">{plan.name}</td>
                                 <td className="px-4 py-2">{plan.price}</td>
                                 <td className="px-4 py-2">{plan.speed}</td>
-                                <td className="px-4 py-2">{plan.isActive}</td>
+                                <td className="px-4 py-2">{plan.isActive ? "Active" : "Inactive"}</td>
                                 <td className="px-4 py-2">{plan.createdAt ? new Date(plan.createdAt).toLocaleDateString() : "sin fecha"}</td>
 
                                 <td className="px-4 py-2 space-x-2">

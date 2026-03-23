@@ -50,7 +50,7 @@ function MaterialPage() {
                                 <td className="px-4 py-2">{material.stock}</td>
                                 <td className="px-4 py-2">{material.minStock}</td>
                                 <td className="px-4 py-2">{material.unitPrice}</td>
-                                <td className="px-4 py-2">{material.active}</td>
+                                <td className="px-4 py-2">{material.active ? "Active" : "Inactive"}</td>
 
                                 <td>
                                     <Link to={`/materials/${material.id}`}>

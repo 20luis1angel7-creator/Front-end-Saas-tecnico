@@ -27,16 +27,23 @@ function PlanDetailPage() {
 
     return (
         <>
-            <h1>Plan details</h1>
-            <h2>Plan {id}</h2>
+            <h1 className="font-bold px-4 py-2 text-black dark:text-white">Plan details</h1>
+            <h2 className="font-bold px-4 py-2 text-black dark:text-white">Plan {id}</h2>
             
-            {plan && (
-                <div>
-                    <h2>{plan.name}</h2>
-                    <p>{plan.price}</p>
-                    <p>{plan.speed}</p>
+            {!plan && <p>Cargando plan...</p>}
 
-                    <DeletePlan plan={plan} />
+            {plan && (
+                <div className="font-bold px-4 py-2 text-black dark:text-white"> 
+                    <h3 className="py-1">Name plan:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{plan.name}</h3>
+                    <h3 className="py-1">Price:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{plan.price}</h3>
+                    <h3 className="py-1">Speed:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{plan.speed}</h3>
+
+                    <div className="">
+                        <DeletePlan plan={plan} />
+                    </div>
                 </div>
             )}
             

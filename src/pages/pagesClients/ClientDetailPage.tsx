@@ -37,19 +37,19 @@ function ClientDetailPage() {
             {client && (
                 <div className="font-bold px-4 py-2 text-black dark:text-white">
                     <h3 className="py-1">Name:</h3>
-                    <h3 className="bg-gray-900 w-100 ps-15">{client.name}</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{client.name}</h3>
                     <h3 className="py-1">Nickname:</h3>
-                    <h3 className="bg-gray-900 w-100 ps-15">{client.nickname}</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{client.nickname}</h3>
                     <h3 className="py-1">Cedula:</h3>
-                    <h3 className="bg-gray-900 w-100 ps-15">{client.cedula}</h3>
-                    <h3>Address:</h3>
-                    <h3 className="bg-gray-500 w-100">{client.address}</h3>
-                    <h3>Phone:</h3>
-                    <h3 className="bg-gray-500 w-100">{client.phone}</h3>
-                    <h3>Plan:</h3>
-                    <h3 className="bg-gray-500 w-100">{client.planId}</h3>
-                    <h3>Router:</h3>
-                    <h3 className="bg-gray-500 w-100">{client.routerSerial ?? "no router"}</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{client.cedula}</h3>
+                    <h3 className="py-1">Address:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{client.address}</h3>
+                    <h3 className="py-1">Phone:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{client.phone}</h3>
+                    <h3 className="py-1">Plan:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{client.planId}</h3>
+                    <h3 className="py-1">Router:</h3>
+                    <h3 className="dark:bg-gray-900 w-100 ps-15">{client.routerSerial ?? "no router"}</h3>
 
                     <div className="py-5">
                         <Suspend client={client} />

@@ -23,7 +23,8 @@ function DeletePlan( {plan}: PlanProps ) {
 
     return (
         <>
-            <button onClick={() => planDelete(plan.id)}>
+            <button onClick={() => planDelete(plan.id)}
+                className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-red-400">
                 delete
             </button>
         </>
