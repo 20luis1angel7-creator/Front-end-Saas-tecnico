@@ -84,35 +84,86 @@ function TecnicalView() {
 
 
     return (
-        <>
-            <h2 className=" text-black dark:text-white px-5 p-5 ">
-                View</h2>
+    <div className="bg-slate-50 min-h-screen p-6 dark:bg-gray-900">
 
-            <section>
-                <table className="min-w-full text-sm text-left text-gray-300 border border-gray-700 dark:text-gray-200 ">
-                    <thead className="bg-gray-400 text-black uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
-                        <tr>
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-white px-5 py-5">
+            View
+        </h2>
 
+        <section className="overflow-x-auto">
+            <table className="min-w-full text-sm text-left border border-slate-200 bg-white dark:border-gray-700 dark:text-gray-200">
+                <thead className="bg-slate-100 text-slate-700 uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
+                    <tr>
                         <th className="px-4 py-2">Status</th>
                         <th className="px-4 py-2">Name</th>
                         <th className="px-4 py-2">Create</th>
                         <th className="px-4 py-2">Complete</th>
                         <th className="px-4 py-2">actions</th>
+                    </tr>
+                </thead>
+
+                <tbody className="bg-white dark:bg-gray-900">
+                    {orders.map((order) => (
+                        <tr
+                            key={order.id}
+                            className="border-b border-slate-200 text-slate-800 hover:bg-slate-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+                        >
+                            <td className="px-4 py-2">{order.status}</td>
+                            <td className="px-4 py-2">{order.clientId}</td>
+                            <td className="px-4 py-2">{new Date(order.createdAt).toLocaleDateString()}</td>
+                            <td className="px-4 py-2">
+                                {order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "undated"}
+                            </td>
+
+                            <td className="px-4 py-2 space-x-2">
+                                <Link to={`/orders/${order.id}`}>
+                                    <button className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-700 dark:bg-blue-700">
+                                        D
+                                    </button>
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </section>
+
+        <div className="grid grid-cols-2 gap-8 mt-6">
+
+            <section className="overflow-x-auto">
+                <h2 className="text-xl font-bold text-slate-800 dark:text-white px-5 py-5">
+                    Materials
+                </h2>
+
+                <table className="w-full text-sm text-left border border-slate-200 bg-white dark:border-gray-700 dark:text-gray-200">
+                    <thead className="bg-slate-100 text-slate-700 uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
+                        <tr>
+                            <th className="px-4 py-2">name</th>
+                            <th className="px-4 py-2">stock</th>
+                            <th className="px-4 py-2">actions</th>
                         </tr>
                     </thead>
 
                     <tbody className="bg-white dark:bg-gray-900">
-                        {orders.map((order) => (
-                            <tr key={order.id} className="border-b text-black border-gray-700 hover:bg-gray-100  dark:text-white dark:hover:bg-gray-800">
-                               <td className="px-4 py-2">{order.status}</td>
-                                <td className="px-4 py-2">{order.clientId}</td>
-                                <td className="px-4 py-2">{new Date(order.createdAt).toLocaleDateString()}</td>
-                                <td className="px-4 py-2">{order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "undated"}</td>
+                        {materials.map((material) => (
+                            <tr
+                                key={material.id}
+                                className="border-b border-slate-200 text-slate-800 hover:bg-slate-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+                            >
+                                <td className="px-4 py-2">{material.name}</td>
+                                <td className="px-4 py-2">{material.stock}</td>
 
                                 <td className="px-4 py-2 space-x-2">
-                                    <Link to={`/orders/${order.id}`}>
-                                        <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">
-                                            Detail</button>
+                                    <Link to={`/materials/${material.id}`}>
+                                        <button className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-700 dark:bg-blue-700">
+                                            S
+                                        </button>
+                                    </Link>
+
+                                    <Link to={`/materials/${material.id}/update`}>
+                                        <button className="rounded bg-slate-200 px-2 py-1 text-slate-800 hover:bg-slate-300 dark:bg-gray-700 dark:text-white dark:hover:bg-blue-700">
+                                            U
+                                        </button>
                                     </Link>
                                 </td>
                             </tr>
@@ -121,105 +172,44 @@ function TecnicalView() {
                 </table>
             </section>
 
-                        
-            <div className="grid grid-cols-2 gap-30 mt-6">
-               
-                <section className="overflow-x-auto ">
+            <section className="overflow-x-auto">
+                <h2 className="text-xl font-bold text-slate-800 dark:text-white px-5 py-5">
+                    Plans
+                </h2>
 
-                     <h2 className=" text-black dark:text-white px-5 p-5 ">
-                    Materials</h2>
-
-                    <table className="w-full text-sm text-left text-gray-300 border border-gray-700 dark:text-gray-200 ">
-                        <thead className="bg-gray-400 text-black uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
-                            <tr>
-                            {/* <th className="px-4 py-2">Id</th> */}
-                            <th className="px-4 py-2">name</th>
-                            <th className="px-4 py-2">stock</th>
-                            {/* <th className="px-4 py-2">minStock</th>
-                            <th className="px-4 py-2">unitPrice</th>
-                            <th className="px-4 py-2">active</th>*/}
-                            <th className="px-4 py-2">actions</th> 
-                            </tr>
-                        </thead>
-
-                        <tbody className="bg-white dark:bg-gray-900">
-                            {materials.map((material) => (
-                                <tr key={material.id} className="text-black dark:text-white">
-                                    {/* <td className="px-4 py-2">{material.id}</td> */}
-                                    <td className="px-4 py-2">{material.name}</td>
-                                    <td className="px-4 py-2">{material.stock}</td>
-                                    {/*<td className="px-4 py-2">{material.minStock}</td>
-                                    <td className="px-4 py-2">{material.unitPrice}</td>
-                                    <td className="px-4 py-2">{material.active ? "Active" : "Inactive"}</td> */}
-
-                                    <td className="px-4 py-2 space-x-2">
-                                        <Link to={`/materials/${material.id}`}>
-                                            <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">
-                                                Show</button>
-                                        </Link>
-
-                                        <Link to={`/materials/${material.id}/update`}>
-                                            <button className="bg-gray-100 border px-2 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">
-                                                Update</button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </section>
-
-
-                
-
-                <section className="overflow-x-auto ">
-                    <h2 className=" text-black dark:text-white px-5 p-5 ">
-                    Plans</h2>
-                    <table className="w-full text-sm text-left text-gray-300 border border-gray-700 dark:text-gray-200 ">
-                        <thead className="bg-gray-400 text-black uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
-                            <tr>
-                                {/*<th className="px-4 py-2">id</th>*/}
-                                <th className="px-4 py-2">name</th>
-                                <th className="px-4 py-2">Price</th>
-                                <th className="px-4 py-2">Speed</th>
-                                {/* <th className="px-4 py-2">Active</th>
-                                <th className="px-4 py-2">Created</th>
-                                <th className="px-4 py-2">acciones</th> */}
-                            </tr>
-                        </thead>
-
-                        <tbody className="bg-white dark:bg-gray-900">
-                            {plans.map((plan) => (
-                                <tr key={plan.id} className="border-b text-black border-gray-700 hover:bg-gray-100  dark:text-white dark:hover:bg-gray-800">
-                                    <td className="px-4 py-2">{plan.name}</td>
-                                    <td className="px-4 py-2">{plan.price}</td>
-                                    <td className="px-4 py-2">{plan.speed}</td>
-                                    {/* <td className="px-4 py-2">{plan.isActive ? "Active" : "Inactive"}</td>
-                                    <td className="px-4 py-2">{plan.createdAt ? new Date(plan.createdAt).toLocaleDateString() : "sin fecha"}</td> */}
-
-                                    {/* <td className="px-4 py-2 space-x-2">
-                                    <Link to={`/plans/${plan.id}`}>
-                                        <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">show plan</button>
-                                    </Link>
-
-                                    <Link to={`/plans/${plan.id}/edit`}>
-                                        <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">edit plan</button>
-                                    </Link>
-                                    </td> */}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </section>
-            </div>
-
-            <h2 className=" text-black dark:text-white px-5 p-5 ">
-                Clients</h2>
-
-            <section className="overflow-x-auto ">
-                <table className="min-w-full text-sm text-left text-gray-300 border border-gray-700 dark:text-gray-200 ">
-                    <thead className="bg-gray-400 text-black uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
+                <table className="w-full text-sm text-left border border-slate-200 bg-white dark:border-gray-700 dark:text-gray-200">
+                    <thead className="bg-slate-100 text-slate-700 uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
                         <tr>
+                            <th className="px-4 py-2">name</th>
+                            <th className="px-4 py-2">Price</th>
+                            <th className="px-4 py-2">Speed</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="bg-white dark:bg-gray-900">
+                        {plans.map((plan) => (
+                            <tr
+                                key={plan.id}
+                                className="border-b border-slate-200 text-slate-800 hover:bg-slate-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+                            >
+                                <td className="px-4 py-2">{plan.name}</td>
+                                <td className="px-4 py-2">{plan.price}</td>
+                                <td className="px-4 py-2">{plan.speed}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <h2 className="text-xl font-bold text-slate-800 dark:text-white px-5 py-5">
+            Clients
+        </h2>
+
+        <section className="overflow-x-auto">
+            <table className="min-w-full text-sm text-left border border-slate-200 bg-white dark:border-gray-700 dark:text-gray-200">
+                <thead className="bg-slate-100 text-slate-700 uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
+                    <tr>
                         <th className="px-4 py-2">name</th>
                         <th className="px-4 py-2">nickname</th>
                         <th className="px-4 py-2">cedula</th>
@@ -229,13 +219,15 @@ function TecnicalView() {
                         <th className="px-4 py-2">status</th>
                         <th className="px-4 py-2">routerSerial</th>
                         <th className="px-4 py-2">actions</th>
-                        </tr>
-                    </thead>
+                    </tr>
+                </thead>
 
-                    <tbody className="bg-white dark:bg-gray-900">
+                <tbody className="bg-white dark:bg-gray-900">
                     {clients.map((client) => (
-                        <tr key={client.id} className="border-b text-black border-gray-700 hover:bg-gray-100  dark:text-white dark:hover:bg-gray-800">
-                            
+                        <tr
+                            key={client.id}
+                            className="border-b border-slate-200 text-slate-800 hover:bg-slate-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+                        >
                             <td className="px-4 py-2">{client.name}</td>
                             <td className="px-4 py-2">{client.nickname}</td>
                             <td className="px-4 py-2">{client.cedula}</td>
@@ -247,22 +239,22 @@ function TecnicalView() {
 
                             <td className="px-4 py-2 space-x-2">
                                 <Link to={`/clients/${client.id}`}>
-                                <button className="bg-gray-100 border px-4 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">
-                                    Show</button>
+                                    <button className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-700 dark:bg-blue-700">
+                                        S
+                                    </button>
                                 </Link>
 
                                 <Link to={`/clients/${client.id}/edit`}>
-                                <button className="bg-gray-100 border px-2 py-1 rounded hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-blue-700">
-                                    Update</button>
+                                    <button className="rounded bg-slate-200 px-2 py-1 text-slate-800 hover:bg-slate-300 dark:bg-gray-700 dark:text-white dark:hover:bg-blue-700">
+                                        U
+                                    </button>
                                 </Link>
                             </td>
                         </tr>
                     ))}
-                    </tbody>
-                </table>
-            </section>
+                </tbody>
+            </table>
+        </section>
 
-        </>
-    )
-} 
-export default TecnicalView
+    </div>
+)}export default TecnicalView
