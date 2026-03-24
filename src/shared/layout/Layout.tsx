@@ -39,6 +39,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         className="mx-5">
         <button>Materials</button>
         </Link>
+        <Link to="/tecnica"
+        className="mx-5">
+        <button>Tecnical view</button>
+        </Link>
 
         <button 
         onClick={toggleDark} 

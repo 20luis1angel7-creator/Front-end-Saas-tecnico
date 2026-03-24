@@ -21,7 +21,7 @@ import NewMaterial from "../pages/PageMaterial/NewMaterialPage";
 import EditMaterial from "../pages/PageMaterial/EditMaterialPage";
 import OrderPage from "../pages/pageOrders/OrderPage";
 import RegisterMaterialPurchasePage from "../pages/pageExpense/expenseMaterialPurchesa";
-
+import TecnicalView from "../pages/pageView/tecnicalView";
 
 // Páginas simples
 const HomePage = () => <div className="text-black dark:text-white">Página de inicio</div>;
@@ -36,6 +36,9 @@ const AppRoutes: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+
+          {/*view twcnical */}
+          <Route path="tecnica" element={<TecnicalView />} />
 
 
           {/*clients*/}
