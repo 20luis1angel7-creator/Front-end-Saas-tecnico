@@ -44,9 +44,14 @@ function OrderDetail() {
                     <h3 className="py-1">completed:</h3>
                     <h3 className="dark:bg-gray-900 w-100 ps-15">{order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "sin fecha"}</h3>
 
-                    <StartOrder order={order} />
-                    <CompletedOrder order={order} />
-                    <CancelOrder order={order} />
+                    <div>
+                        {order.status === "IN_PROGRESS" ? (
+                            <CompletedOrder order={order} />
+                        ) : (
+                            <StartOrder order={order} />
+                        )}
+                        <CancelOrder order={order} />
+                    </div>
                 </div>
             )}
         </>

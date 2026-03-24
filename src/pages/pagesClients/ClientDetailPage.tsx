@@ -51,8 +51,12 @@ function ClientDetailPage() {
                     <h3 className="dark:bg-gray-900 w-100 ps-15">{client.routerSerial ?? "no router"}</h3>
 
                     <div className="py-5">
-                        <Suspend client={client} />
-                        <ActivateClient client={client} />
+                        {/*para que se oculte un boton */}
+                        {client.status === "ACTIVE" ? (
+                            <Suspend client={client} />
+                        ) : (
+                             <ActivateClient client={client} />
+                        )}
                         <EliminarClient client={client} />
                     </div>
                 </div>

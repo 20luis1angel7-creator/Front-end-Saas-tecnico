@@ -81,6 +81,8 @@ function TecnicalView() {
                     }    
                     clients();
                 }, [])
+            
+                
 
 
     return (
@@ -96,6 +98,7 @@ function TecnicalView() {
                     <tr>
                         <th className="px-4 py-2">Status</th>
                         <th className="px-4 py-2">Name</th>
+                        <th className="px-4 py-2">Address</th>
                         <th className="px-4 py-2">Create</th>
                         <th className="px-4 py-2">Complete</th>
                         <th className="px-4 py-2">actions</th>
@@ -103,27 +106,29 @@ function TecnicalView() {
                 </thead>
 
                 <tbody className="bg-white dark:bg-gray-900">
-                    {orders.map((order) => (
-                        <tr
-                            key={order.id}
-                            className="border-b border-slate-200 text-slate-800 hover:bg-slate-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
-                        >
-                            <td className="px-4 py-2">{order.status}</td>
-                            <td className="px-4 py-2">{order.clientId}</td>
-                            <td className="px-4 py-2">{new Date(order.createdAt).toLocaleDateString()}</td>
-                            <td className="px-4 py-2">
-                                {order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "undated"}
-                            </td>
+                    {orders.map((order) => {
+                        const client = clients.find((c) => c.id === order.clientId)
 
-                            <td className="px-4 py-2 space-x-2">
-                                <Link to={`/orders/${order.id}`}>
-                                    <button className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-700 dark:bg-blue-700">
-                                        D
-                                    </button>
-                                </Link>
-                            </td>
-                        </tr>
-                    ))}
+                        return (
+                            <tr key={order.id} className="border-b border-slate-200 text-black hover:bg-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-800">
+                                <td className="px-4 py-2">{order.status}</td>
+                                <td className="px-4 py-2">{client ? client.name : "Client not found"}</td>
+                                <td className="px-4 py-2">{client ? client.address : "No address"}</td>
+                                <td className="px-4 py-2">{new Date(order.createdAt).toLocaleDateString()}</td>
+                                <td className="px-4 py-2">
+                                    {order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "undated"}
+                                </td>
+
+                                <td className="px-4 py-2 space-x-2">
+                                    <Link to={`/orders/${order.id}`}>
+                                        <button className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-700 dark:bg-blue-700">
+                                            D
+                                        </button>
+                                    </Link>
+                                </td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </section>
@@ -161,7 +166,7 @@ function TecnicalView() {
                                     </Link>
 
                                     <Link to={`/materials/${material.id}/update`}>
-                                        <button className="rounded bg-slate-200 px-2 py-1 text-slate-800 hover:bg-slate-300 dark:bg-gray-700 dark:text-white dark:hover:bg-blue-700">
+                                        <button className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-700 dark:bg-blue-700">
                                             U
                                         </button>
                                     </Link>
@@ -245,9 +250,9 @@ function TecnicalView() {
                                 </Link>
 
                                 <Link to={`/clients/${client.id}/edit`}>
-                                    <button className="rounded bg-slate-200 px-2 py-1 text-slate-800 hover:bg-slate-300 dark:bg-gray-700 dark:text-white dark:hover:bg-blue-700">
-                                        U
-                                    </button>
+                                    <button className="rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-700 dark:bg-blue-700">
+                                            U
+                                        </button>
                                 </Link>
                             </td>
                         </tr>
