@@ -5,7 +5,6 @@ function RegisterMaterialPurchasePage() {
     const [materialId, setMaterialId] = useState("");
     const [quantity, setQuantity] = useState(0);
     const [description, setDescription] = useState("");
-    const [date, setDate] = useState("");
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,8 +17,7 @@ function RegisterMaterialPurchasePage() {
             body: JSON.stringify({
                 materialId,
                 quantity,
-                description,
-                date
+                description
             })
         });
 
@@ -63,13 +61,7 @@ function RegisterMaterialPurchasePage() {
                     onChange={(e) => setDescription(e.target.value)}
                 />
 
-                <h3 className="font-bold pb-2">Date:</h3>
-                <input
-                    className="bg-gray-400 w-100 p-0.1 rounded-lg dark:text-black"
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                />
+                
 
                 <button className="flex font-bold m-6 px-3 py-1 h-9 w-52 rounded text-white bg-gray-700 dark:bg-blue-700">
                     Save

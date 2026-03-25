@@ -38,7 +38,6 @@ function ExpensePage() {
                         <tr>
                         <th className="px-4 py-2">description</th>
                         <th className="px-4 py-2">amount</th>
-                        <th className="px-4 py-2">date</th>
                         <th className="px-4 py-2">createdAt</th>
                         <th className="px-4 py-2">acciones</th>
                         </tr>
@@ -51,7 +50,6 @@ function ExpensePage() {
                             
                                 <td className="px-4 py-2">{expense.description}</td>
                                 <td className="px-4 py-2">{expense.amount}</td>
-                                <td className="px-4 py-2">{expense.date ? new Date(expense.date).toLocaleDateString() : "sin fecha"}</td>
                                 <td className="px-4 py-2">{expense.createdAt
                                         ? new Date(expense.createdAt).toLocaleDateString()
                                         : "sin fecha"}

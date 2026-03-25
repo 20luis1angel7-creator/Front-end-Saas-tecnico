@@ -38,8 +38,7 @@ function ExpenseDetail() {
                     <h3 className="dark:bg-gray-900 w-100 ps-15">{expense.description}</h3>
                     <h3 className="py-1">Amount:</h3>
                     <h3 className="dark:bg-gray-900 w-100 ps-15">{expense.amount}</h3>
-                    <h3 className="py-1">Date:</h3>
-                    <h3 className="dark:bg-gray-900 w-100 ps-15">{new Date(expense.date).toLocaleDateString()}</h3>
+                    
                     <h3 className="py-1">Created:</h3>
                     <h3 className="dark:bg-gray-900 w-100 ps-15">{new Date(expense.createdAt).toLocaleDateString()}</h3>
 

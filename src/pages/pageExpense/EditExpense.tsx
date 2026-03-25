@@ -10,8 +10,7 @@ function EditExpense() {
 
     const [expense, setExpense] = useState({
         description: "",
-        amount: 0,
-        date: ""
+        amount: 0
     })
 
     useEffect(() => {
@@ -41,7 +40,7 @@ function EditExpense() {
         <>
             <form onSubmit={handlerSubmit} 
             className="flex flex-col px-4 py-4 text-black dark:text-gray-200">
-                <h3>Name:</h3>
+                <h3>Description:</h3>
                 <input type="text"
                 className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={expense.description}
@@ -49,7 +48,7 @@ function EditExpense() {
                     setExpense({ ...expense, description: e.target.value})
                 } />
 
-                <h3>Router:</h3>
+                <h3>Amount:</h3>
                 <input type="number"
                 className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
                 value={expense.amount}
@@ -57,13 +56,7 @@ function EditExpense() {
                     setExpense({ ...expense, amount: Number(e.target.value)})
                 } />
 
-                <h3>Router:</h3>
-                <input type="text"
-                className="bg-gray-300 w-100 border border-gray-300 dark:text-black"
-                value={expense.date}
-                onChange={(e) => 
-                    setExpense({ ...expense, date: e.target.value})
-                } />
+                
 
                 <button type="submit"
                     className="flex font-bold m-6 px-3 py-1 h-9 w-24 rounded text-white  bg-gray-700 dark:bg-blue-700">

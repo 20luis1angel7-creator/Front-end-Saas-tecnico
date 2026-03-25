@@ -9,7 +9,6 @@ function NewExpense() {
     const [type, setType] = useState("EMPLOYEE")
     const [description, setDescrption] = useState("")
     const [amount, setAmount] = useState(0)
-    const [date, setDate] = useState("")
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -23,7 +22,6 @@ function NewExpense() {
                 type,
                 description,
                 amount,
-                date,
                 createdAt: new Date().toISOString()
             })
         })
@@ -61,11 +59,7 @@ function NewExpense() {
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))} />
 
-                <h3 className="font-bold pb-2">Date:</h3>
-                <input type="date"
-                className="bg-gray-400  w-100 p-0.1 rounded-lg dark:text-black"
-                value={date}
-                onChange={(e) => setDate(e.target.value)} />
+            
             
                 <button className="flex font-bold m-6 px-3 py-1 h-9 w-21 rounded text-white  bg-gray-700 dark:bg-blue-700">
                     Save
