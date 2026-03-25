@@ -3,11 +3,15 @@ import { Link } from "react-router-dom"
 import type { Client } from "../../type/Client"
 import { API_URL } from "../../api/api"
 
-
+type Plan = {
+    id: string
+    name: string
+}
 
 function GetClients() {
 
     const [clients, setClients] = useState<Client[]>([])
+    const [plans, setPlans] = useState<Plan[]>([])
 
     useEffect(() => {
         const clients = async () => {
@@ -25,6 +29,17 @@ function GetClients() {
             }   
         }    
         clients();
+
+        const getPlans = async () => {
+            const res = await fetch(`${API_URL}/plans`)
+            if (!res.ok) {
+                alert("Error loading plans")
+                return
+            }
+            const data: Plan[] = await res.json()
+            setPlans(data)
+        }
+        getPlans()
     }, [])
         
     return (
@@ -60,7 +75,7 @@ function GetClients() {
                             <td className="px-4 py-2">{client.cedula}</td>
                             <td className="px-4 py-2">{client.address}</td>
                             <td className="px-4 py-2">{client.phone}</td>
-                            <td className="px-4 py-2">{client.planId}</td>
+                            <td className="px-4 py-2">{plans.find((plan) => plan.id === client.planId)?.name ?? "no plan"}</td>
                             <td className="px-4 py-2">{client.status}</td>
                             <td className="px-4 py-2">{client.routerSerial}</td>
 
