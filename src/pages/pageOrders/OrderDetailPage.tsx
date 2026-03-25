@@ -158,49 +158,64 @@ const handleConfirmComplete = async () => {
 )}
 
           {!showMaterials && (
-    <>
-        <h1 className="font-bold text-back px-4 py-2 text-black dark:text-white">
-            Orders details
-        </h1>
+            <>
+                <h1 className="font-bold text-back px-4 py-2 text-black dark:text-white">
+                    Orders details
+                </h1>
 
-        {!order && <p>Loading...</p>}
+                {!order && <p>Loading...</p>}
 
-        {order && (
-            <div className="font-bold px-4 py-2 text-black dark:text-white">
-                <h3 className="py-1">Status:</h3>
-                <h3 className="dark:bg-gray-900 w-100 ps-15">{order.status}</h3>
+                {order && (
+                    <div className="font-bold px-4 py-2 text-black dark:text-white">
+                        <h3 className="py-1">Status:</h3>
+                        <h3 className="dark:bg-gray-900 w-100 ps-15">{order.status}</h3>
 
-                <h3 className="py-1">create:</h3>
-                <h3 className="dark:bg-gray-900 w-100 ps-15">
-                    {new Date(order.createdAt).toLocaleDateString()}
-                </h3>
+                        <h3 className="py-1">create:</h3>
+                        <h3 className="dark:bg-gray-900 w-100 ps-15">
+                            {new Date(order.createdAt).toLocaleDateString()}
+                        </h3>
 
-                <h3 className="py-1">completed:</h3>
-                <h3 className="dark:bg-gray-900 w-100 ps-15">
-                    {order.completedAt
-                        ? new Date(order.completedAt).toLocaleDateString()
-                        : "sin fecha"}
-                </h3>
+                        <h3 className="py-1">completed:</h3>
+                        <h3 className="dark:bg-gray-900 w-100 ps-15">
+                            {order.completedAt
+                                ? new Date(order.completedAt).toLocaleDateString()
+                                : "sin fecha"}
+                        </h3>
 
-                <div>
-                    {order.status === "PENDING" && <StartOrder order={order} />}
+                        <h3 className="py-1">Materials used:</h3>
 
-                    {order.status === "IN_PROGRESS" && (
-                        <button
-                            onClick={handleShowCompletePanel}
-                            className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-green-600"
-                        >
-                            Complete
-                        </button>
-                    )}
+                        {order.materialsUsed && order.materialsUsed.length > 0 ? (
+                            <div className="dark:bg-gray-900 w-100 ps-4 py-2">
+                                {order.materialsUsed.map((item) => (
+                                    <p key={item.materialId}>
+                                        {item.materialName} - quantity: {item.quantity}
+                                    </p>
+                                ))}
+                            </div>
+                        ) : (
+                            <h3 className="dark:bg-gray-900 w-100 ps-15">No materials used</h3>
+                        )}
 
-                    <CancelOrder order={order} />
-                </div>
-            </div>
-        )}
+                        <div>
+                            {order.status === "PENDING" && <StartOrder order={order} />}
+
+                            {order.status === "IN_PROGRESS" && (
+                                <button
+                                    onClick={handleShowCompletePanel}
+                                    className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-green-600"
+                                >
+                                    Complete
+                                </button>
+                            )}
+
+                            <CancelOrder order={order} />
+                        </div>
+                    </div>
+                )}
+                </>
+            )
+        }
     </>
-)}
-        </>
     )
 }
 
