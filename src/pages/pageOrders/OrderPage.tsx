@@ -35,7 +35,9 @@ function OrderPage() {
                         <tr>
 
                         <th className="px-4 py-2">Status</th>
+                        <th className="px-4 py-2">Cedula</th>
                         <th className="px-4 py-2">Name</th>
+                        <th className="px-4 py-2">Address</th>
                         <th className="px-4 py-2">Create</th>
                         <th className="px-4 py-2">Complete</th>
                         <th className="px-4 py-2">acciones</th>
@@ -48,8 +50,9 @@ function OrderPage() {
                     <tr key={order.id} className="border-b text-black border-gray-700 hover:bg-gray-100  dark:text-white dark:hover:bg-gray-800">
                             
                         
-                        <td className="px-4 py-2">{order.status}</td>
-                        <td className="px-4 py-2">{order.clientId}</td>
+                        <td className="px-4 py-2">{order.status}</td><td className="px-4 py-2">{order.client?.cedula ?? "No cedula"}</td>
+                        <td className="px-4 py-2">{order.client?.name ?? "No name"}</td>
+                        <td className="px-4 py-2">{order.client?.address ?? "No address"}</td>
                         <td className="px-4 py-2">{new Date(order.createdAt).toLocaleDateString()}</td>
                         <td className="px-4 py-2">{order.completedAt ? new Date(order.completedAt).toLocaleDateString() : "sin fecha"}</td>
 

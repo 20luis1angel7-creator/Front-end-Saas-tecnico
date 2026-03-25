@@ -167,8 +167,20 @@ const handleConfirmComplete = async () => {
 
                 {order && (
                     <div className="font-bold px-4 py-2 text-black dark:text-white">
+                        
+                        {order.client ? (
+    <div className="dark:bg-gray-900 w-100 ps-4 py-2">
+        <p>Cedula: {order.client.cedula}</p>
+        <p>Name: {order.client.name}</p>
+        <p>Address: {order.client.address}</p>
+    </div>
+) : (
+    <h3 className="dark:bg-gray-900 w-100 ps-15">No client info</h3>
+)}
                         <h3 className="py-1">Status:</h3>
                         <h3 className="dark:bg-gray-900 w-100 ps-15">{order.status}</h3>
+
+                        <h3 className="py-1">Client:</h3>
 
                         <h3 className="py-1">create:</h3>
                         <h3 className="dark:bg-gray-900 w-100 ps-15">

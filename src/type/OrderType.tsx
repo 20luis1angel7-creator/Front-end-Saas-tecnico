@@ -5,12 +5,19 @@ export type OrderMaterialUsed = {
     quantity: number
 }
 
+export type OrderClient = {
+    cedula: string
+    name: string
+    address: string
+}
+
 export type Order = {
     id: string
     clientId: string
     status: string
     createdAt: Date
     completedAt?: Date
+    client?: OrderClient | null
     materialsUsed?: OrderMaterialUsed[]
 }
 
