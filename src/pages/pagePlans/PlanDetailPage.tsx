@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import type { Plan } from "../../type/PlansType"
-import DeletePlan from "../../shared/components/PlanComponents/DeletePlan"
 import { API_URL } from "../../api/api"
-
+import ActivatePlan from "../../shared/components/PlanComponents/ActivatePlan"
+import DeactivatePlan from "../../shared/components/PlanComponents/DeactivatePlan"
 
 function PlanDetailPage() {
     const { id } = useParams()
@@ -42,7 +42,11 @@ function PlanDetailPage() {
                     <h3 className="dark:bg-gray-900 w-100 ps-15">{plan.speed}</h3>
 
                     <div className="">
-                        <DeletePlan plan={plan} />
+                        {plan.isActive ? (
+                            <DeactivatePlan plan={plan} />
+                        ) : (
+                            <ActivatePlan plan={plan} />
+                        )}
                     </div>
                 </div>
             )}

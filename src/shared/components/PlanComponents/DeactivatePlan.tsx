@@ -3,8 +3,8 @@ import type { PlanProps } from "../../../type/PlansType";
 
 
 
-function DeletePlan( {plan}: PlanProps ) {
-    const planDelete = async (id: string) => {
+function DeactivatePlan( {plan}: PlanProps ) {
+    const planDeactivate = async (id: string) => {
         try {
             const res =await fetch(`${API_URL}/plans/${id}/deactivate`,{
                 method: "PATCH"
@@ -25,11 +25,11 @@ function DeletePlan( {plan}: PlanProps ) {
 
     return (
         <>
-            <button onClick={() => planDelete(plan.id)}
+            <button onClick={() => planDeactivate(plan.id)}
                 className="mx-5 my-5 w-25 h-9 rounded text-white bg-gray-500 hover:bg-red-400">
                 deactivate
             </button>
         </>
     )
 }
-export default DeletePlan
+export default DeactivatePlan
