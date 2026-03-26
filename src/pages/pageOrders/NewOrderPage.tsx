@@ -8,6 +8,7 @@ function NewOrderPage() {
     const navigate = useNavigate();
 
     const [cedula, setCedula] = useState("");
+    const [type, setType] = useState<"INSTALLATION" | "AVERIA">("AVERIA");
     const [clients, setClients] = useState<Client[]>([]);
     const [selectedClient, setSelectedClient] = useState<Client | null>(null);
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -88,7 +89,8 @@ function NewOrderPage() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    cedula: cedula.trim()
+                    cedula: cedula.trim(),
+                    type
                 })
             });
 
@@ -134,13 +136,30 @@ function NewOrderPage() {
 
             <div className="px-5 py-5 text-black dark:text-white">
                 <h2 className="font-bold text-xl mb-4">
-                    Create order by cedula
+                    Create order
                 </h2>
 
                 <form
                     onSubmit={handleSubmit}
                     className="max-w-2xl flex flex-col gap-4"
                 >
+                    <div>
+                        <label className="block mb-2 font-semibold">
+                            Tipo de orden
+                        </label>
+
+                        <select
+                            value={type}
+                            onChange={(e) =>
+                                setType(e.target.value as "INSTALLATION" | "AVERIA")
+                            }
+                            className="w-full rounded border border-gray-300 bg-gray-200 px-3 py-2 text-black outline-none focus:border-blue-500"
+                        >
+                            <option value="AVERIA">Avería</option>
+                            <option value="INSTALLATION">Instalación</option>
+                        </select>
+                    </div>
+
                     <div className="relative">
                         <label className="block mb-2 font-semibold">
                             Buscar cliente por cédula
