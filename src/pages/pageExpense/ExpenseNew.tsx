@@ -1,6 +1,6 @@
 import React, {useState } from "react";
 import { API_URL } from "../../api/api";
-
+import Toast from "../../shared/components/ui/Toast";
 
 
 
@@ -9,7 +9,8 @@ function NewExpense() {
     const [type, setType] = useState("EMPLOYEE")
     const [description, setDescrption] = useState("")
     const [amount, setAmount] = useState(0)
-
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+    
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -26,14 +27,21 @@ function NewExpense() {
             })
         })
         if (!res.ok) {
-                alert("error ctreated expense")
+                setToast({ message: "error ctreated expense", type: "error" })
                 return
         }
-        alert("Create expense")
+        setToast({ message: "Create expense", type: "success" })
     }
 
     return (
         <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <h2 className="font-bold text-black dark:text-white m-5">create expense</h2>
 
             <form onSubmit={handlerSubmit}

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { API_URL } from "../../api/api"
-
+import Toast from "../../shared/components/ui/Toast"
 
 
 
 function EditExpense() {
     const { id } = useParams()
-
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+    
     const [expense, setExpense] = useState({
         description: "",
         amount: 0
@@ -30,14 +31,21 @@ function EditExpense() {
             body: JSON.stringify(expense)
         })
         if (!res.ok) {
-                alert("error update client")
+                setToast({ message: "error update client", type: "error" })
                 return
         }
-        alert("Update client")
+        setToast({ message: "Update client", type: "success" })
     }
 
     return (
         <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <form onSubmit={handlerSubmit} 
             className="flex flex-col px-4 py-4 text-black dark:text-gray-200">
                 <h3>Description:</h3>

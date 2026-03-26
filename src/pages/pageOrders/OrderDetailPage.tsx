@@ -4,6 +4,7 @@ import type { Order } from "../../type/OrderType"
 import StartOrder from "../../shared/components/OrderComponent/StartOrder"
 import CancelOrder from "../../shared/components/OrderComponent/CancelOrder"
 import { API_URL } from "../../api/api"
+import Toast from "../../shared/components/ui/Toast"
 
 type Material = {
     id: string
@@ -18,6 +19,7 @@ function OrderDetail() {
     const [showMaterials, setShowMaterials] = useState(false)
     const [materials, setMaterials] = useState<Material[]>([])
     const [consumption, setConsumption] = useState<Record<string, number>>({})
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } |null>(null)
 
     useEffect(() => {
         const getOrder = async () => {
@@ -71,21 +73,21 @@ function OrderDetail() {
                 if (!res.ok) {
                     const errorText = await res.text()
                     console.log("SAVE MATERIAL USAGE ERROR:", errorText)
-                    alert(`error saving material usage: ${errorText}`)
+                    setToast({ message: `error saving material usage: ${errorText}`, type: "error" })
                     return
                 }
             }
         }
 
         if (!saved) {
-            alert("Debes poner al menos una cantidad mayor a 0")
+            setToast({ message: "Debes poner al menos una cantidad mayor a 0", type: "error" })
             return
         }
 
-        alert("material usage saved")
+        setToast({ message: "save material usage", type: "success" })
     } catch (e) {
         console.log(e)
-        alert("error saving material usage")
+        setToast({ message: "error save material usage", type: "error" })
     }
 }
 
@@ -98,20 +100,30 @@ const handleConfirmComplete = async () => {
         if (!res.ok) {
             const errorText = await res.text()
             console.log("COMPLETE ORDER ERROR:", errorText)
-            alert(`error completing order: ${errorText}`)
+            setToast({ message: `error completing order: ${errorText}`, type: "error" })
             return
         }
 
-        alert("order completed")
-        window.location.reload()
+        setToast({ message: "order completed", type: "success" })
+        setTimeout(() => {
+            window.location.reload()
+        }, 1200)
+        
     } catch (e) {
         console.log(e)
-        alert("error completing order")
+        setToast({ message: "error completeing order", type: "error" })
     }
 }
 
     return (
         <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             {showMaterials && (
     <div className="border p-4 rounded bg-white text-black">
         <h2>Register material usage</h2>

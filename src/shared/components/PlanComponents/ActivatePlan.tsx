@@ -1,11 +1,15 @@
 import { API_URL } from "../../../api/api"
 import type { Plan } from "../../../type/PlansType"
+import Toast from "../ui/Toast"
+import { useState } from "react"
 
 interface PlanButtonProps {
     plan: Plan
 }
 
 function ActivatePlan({ plan }: PlanButtonProps) {
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+    
     const planActivate = async (id: string) => {
         try {
             const res = await fetch(`${API_URL}/plans/${id}/activate`, {
@@ -19,21 +23,30 @@ function ActivatePlan({ plan }: PlanButtonProps) {
                 return
             }
 
-            alert("Plan activate")
+            setToast({ message: "Plan activate", type: "success" })
             window.location.reload()
         } catch (e) {
             console.log(e)
-            alert("Error activate plan")
+            setToast({ message: "Error activate plan", type: "error" })
         }
     }
 
     return (
+        <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
         <button
             onClick={() => planActivate(plan.id)}
             className="mx-5 my-5 w-25 h-9 rounded text-white bg-blue-600 hover:bg-blue-700"
         >
             Activate
         </button>
+        </>
     )
 }
 

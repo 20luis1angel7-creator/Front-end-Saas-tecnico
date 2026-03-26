@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { API_URL } from "../../api/api"
-
+import Toast from "../../shared/components/ui/Toast"
 
 
 
 function EditPlan() {
     const { id } = useParams()
-
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+    
     const [plan, setPlan] = useState({
         name:"",
         price:0,
@@ -32,14 +33,21 @@ function EditPlan() {
             body: JSON.stringify(plan)
         })
         if (!res.ok) {
-                alert("error update plan")
+                setToast({ message: "error update plan", type: "error" })
                 return
         }
-        alert("Update plan")
+        setToast({ message: "Update plan", type: "success" })
     }
 
     return (
         <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <form onSubmit={editPlan}
             className="flex flex-col px-4 py-4 text-black dark:text-gray-200">
                 <h3>Name:</h3>

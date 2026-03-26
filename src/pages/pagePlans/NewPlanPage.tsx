@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import { API_URL } from "../../api/api"
-
+import Toast from "../../shared/components/ui/Toast"
 
 function NewPlan() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState<number>(0)
     const [speed, setSpeed] = useState<number>(0)
     // const [created, setCreated] = useState<Date>(new Date())
-
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+    
     const createPlan = async (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -24,16 +25,23 @@ function NewPlan() {
             })
         })
         if (!res.ok) {
-                alert("Error create plan")
+                setToast({ message: "Error create plan", type: "error" })
                 return
         }
-        alert("Create plan")
+        setToast({ message: "Create plan", type: "success" })
         await res.json()
 
     }
 
     return (
         <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <h2 className="font-bold text-black dark:text-white m-5">create new plan</h2>
             <form onSubmit={createPlan}className="flex flex-col text-black px-4 py-4 dark:text-gray-200">
                 <h3 className="font-bold pb-2">Nickname:</h3>

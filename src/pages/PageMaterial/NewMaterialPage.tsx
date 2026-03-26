@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Toast from "../../shared/components/ui/Toast"
 import { API_URL } from "../../api/api"
 
 
@@ -9,6 +10,8 @@ function NewMaterial() {
     const [minStock, setMinStock] = useState(0)
     const [unitPrice, setUnitPrice] = useState(0)
     const [active, setActive] = useState(true)
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+    
 
     const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -26,17 +29,23 @@ function NewMaterial() {
             })
         })
         if (!res.ok) {
-            alert("error create material")
+            setToast({ message: "error create material", type: "error" })
             return
         }
-        alert("Create material")
+        setToast({ message: "Create material", type: "success" })
         await res.json()
         
     }
 
     return (
         <>
-
+            {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <h2 className="font-bold text-black dark:text-white m-5">create material</h2>
 
             <form onSubmit={handlerSubmit}

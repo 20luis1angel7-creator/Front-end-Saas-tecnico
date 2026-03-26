@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../api/api";
+import Toast from "../../shared/components/ui/Toast";
 
 type Material = {
     id: string
@@ -12,7 +13,8 @@ function RegisterMaterialPurchasePage() {
     const [quantity, setQuantity] = useState(0);
     const [description, setDescription] = useState("");
     const [materials, setMaterials] = useState<Material[]>([]);
-
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+    
     useEffect(() => {
         const getMaterials = async () => {
             const res = await fetch(`${API_URL}/materials`);
@@ -47,11 +49,11 @@ function RegisterMaterialPurchasePage() {
         if (!res.ok) {
             const errorText = await res.text();
             console.log("REGISTER MATERIAL PURCHASE ERROR:", errorText);
-            alert("error register material purchase");
+            setToast({ message: "error register material purchase", type: "error" })
             return;
         }
 
-        alert("Register material purchase");
+        setToast({ message: "Register material purchase", type: "success" })
         setMaterialId("");
         setQuantity(0);
         setDescription("");
@@ -59,6 +61,13 @@ function RegisterMaterialPurchasePage() {
 
     return (
         <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <h2 className="font-bold text-black dark:text-white m-5">register material purchase</h2>
 
             <form

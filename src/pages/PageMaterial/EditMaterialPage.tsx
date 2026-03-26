@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../api/api";
-
+import Toast from "../../shared/components/ui/Toast";
 
 
 
 function EditMaterial() {
     const { id } = useParams()
-
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+   
     const [material, setMaterial] = useState({
         name: "",
         stock: 0,
@@ -34,14 +35,21 @@ function EditMaterial() {
         if (!res.ok) {
             const errorText = await res.text()
             console.log("MATERIAL UPDATE ERROR:", errorText)
-            alert("Error loading materials")
+            setToast({ message: "Error loading materials", type: "error" })
             return
         }
-        alert("Material actualizado")
+        setToast({ message: "Material actualizado", type: "success" })
     } 
 
     return (
         <>
+        {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <form onSubmit={handlerSubmit}
             className="flex flex-col px-4 py-4 text-black dark:text-gray-200">
                 <h3>Name:</h3>

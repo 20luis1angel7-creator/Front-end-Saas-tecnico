@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../../api/api";
+import Toast from "../../shared/components/ui/Toast";
 
 type Plan = {
     id: string
@@ -16,6 +17,8 @@ function NewClientPage() {
     const [planId, setPlanId] = useState("")
     const [routerSerial, setRouterSerial] = useState("")
     const [plans, setPlans] = useState<Plan[]>([])
+    const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null)
+   
 
     useEffect(() => {
         const getPlans = async () => {
@@ -52,12 +55,12 @@ function NewClientPage() {
         })
 
         if (!res.ok) {
-            alert("Error creating client")
+            setToast({ message: "Error creating client", type: "error" })
             return
         }
 
         await res.json()
-        alert("Client created")
+        setToast({ message: "Client created", type: "success" })
 
         setName("")
         setNickname("")
@@ -70,6 +73,13 @@ function NewClientPage() {
 
     return (
         <>
+         {toast && (
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => setToast(null)}
+            />
+        )}
             <h1 className="font-bold text-black dark:text-white m-5">Hello here create client</h1>
 
             <form
