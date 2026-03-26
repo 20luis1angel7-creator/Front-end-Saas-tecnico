@@ -1,57 +1,237 @@
-// este codigo pusiblemente sea eliminado
+import { useEffect, useMemo, useState } from "react";
+import { API_URL } from "../../api/api";
+import Toast from "../../shared/components/ui/Toast";
+import type { Client } from "../../type/Client";
+import { useNavigate } from "react-router-dom";
 
+function NewOrderPage() {
+    const navigate = useNavigate();
 
+    const [cedula, setCedula] = useState("");
+    const [clients, setClients] = useState<Client[]>([]);
+    const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [loadingClients, setLoadingClients] = useState(true);
 
+    const [toast, setToast] = useState<{
+        message: string;
+        type: "success" | "error";
+    } | null>(null);
 
+    useEffect(() => {
+        const getClients = async () => {
+            try {
+                const res = await fetch(`${API_URL}/clients`);
 
+                if (!res.ok) {
+                    setToast({
+                        message: "Error loading clients",
+                        type: "error"
+                    });
+                    setLoadingClients(false);
+                    return;
+                }
 
+                const data: Client[] = await res.json();
+                setClients(data);
+            } catch {
+                setToast({
+                    message: "Connection error loading clients",
+                    type: "error"
+                });
+            } finally {
+                setLoadingClients(false);
+            }
+        };
 
+        getClients();
+    }, []);
 
-// import React, { useState } from "react"
+    const filteredClients = useMemo(() => {
+        const text = cedula.trim().toLowerCase();
 
+        if (!text) return [];
 
-// function NewOrder() {
+        return clients
+            .filter((client) => {
+                return (
+                    client.cedula.toLowerCase().includes(text) ||
+                    client.name.toLowerCase().includes(text) ||
+                    client.nickname.toLowerCase().includes(text) ||
+                    client.address.toLowerCase().includes(text)
+                );
+            })
+            .slice(0, 6);
+    }, [cedula, clients]);
 
-//     const [clientId, setClientId] = useState("")
-//     const [createdAt, setCreatedAt] = useState(Date)
+    const handleSelectClient = (client: Client) => {
+        setCedula(client.cedula);
+        setSelectedClient(client);
+        setShowSuggestions(false);
+    };
 
-//     const orderNew = async (e: React.FormEvent) => {
-//         e.preventDefault()
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
 
-//         const res = await fetch(`http://localhost:3000/orders`, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//                 clientId: clientId,
-//                 createdAt: createdAt
-//             })
-//         })
-//         const data = await res.json()
-//         console.log(data)
-//         alert("created order")
-//     }
+        if (!cedula.trim()) {
+            setToast({
+                message: "La cédula es obligatoria",
+                type: "error"
+            });
+            return;
+        }
 
-//     return (
-//         <>
-//             <h2>create order</h2>
-//             <form onSubmit={orderNew}>
-//                 <input type="text"
-//                 placeholder="clientId"
-//                 value={clientId}
-//                 onChange={(e) => 
-//                     setClientId(e.target.value)
-//                 } />
+        try {
+            const res = await fetch(`${API_URL}/orders`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    cedula: cedula.trim()
+                })
+            });
 
-//                 <input type="text"
-//                 placeholder="created"
-//                 value={createdAt}
-//                 onChange={(e) => setCreatedAt(e.target.value)} />
-//             </form>
+            const data = await res.json();
 
-//             <button>guardar</button>
-//         </>
-//     )
-// }
-// export default NewOrder
+            if (!res.ok) {
+                setToast({
+                    message: data.message || "Error creating order",
+                    type: "error"
+                });
+                return;
+            }
+
+            setToast({
+                message: "Order created successfully",
+                type: "success"
+            });
+
+            setCedula("");
+            setSelectedClient(null);
+            setShowSuggestions(false);
+
+            setTimeout(() => {
+                navigate("/orders");
+            }, 800);
+        } catch {
+            setToast({
+                message: "Connection error creating order",
+                type: "error"
+            });
+        }
+    };
+
+    return (
+        <>
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
+
+            <div className="px-5 py-5 text-black dark:text-white">
+                <h2 className="font-bold text-xl mb-4">
+                    Create order by cedula
+                </h2>
+
+                <form
+                    onSubmit={handleSubmit}
+                    className="max-w-2xl flex flex-col gap-4"
+                >
+                    <div className="relative">
+                        <label className="block mb-2 font-semibold">
+                            Buscar cliente por cédula
+                        </label>
+
+                        <input
+                            type="text"
+                            value={cedula}
+                            placeholder="Escribe cédula, nombre o address"
+                            className="w-full rounded border border-gray-300 bg-gray-200 px-3 py-2 text-black outline-none focus:border-blue-500"
+                            onChange={(e) => {
+                                setCedula(e.target.value);
+                                setSelectedClient(null);
+                                setShowSuggestions(true);
+                            }}
+                            onFocus={() => setShowSuggestions(true)}
+                        />
+
+                        {showSuggestions && cedula.trim() && (
+                            <div className="mt-2 w-full rounded border border-gray-300 bg-white shadow-lg dark:bg-gray-800 dark:border-gray-700">
+                                {filteredClients.length > 0 ? (
+                                    filteredClients.map((client) => (
+                                        <button
+                                            key={client.id}
+                                            type="button"
+                                            onClick={() => handleSelectClient(client)}
+                                            className="block w-full border-b border-gray-200 px-3 py-3 text-left hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700"
+                                        >
+                                            <div className="font-semibold text-black dark:text-white">
+                                                {client.name}
+                                            </div>
+                                            <div className="text-sm text-gray-700 dark:text-gray-300">
+                                                Cédula: {client.cedula}
+                                            </div>
+                                            <div className="text-sm text-gray-700 dark:text-gray-300">
+                                                Address: {client.address}
+                                            </div>
+                                        </button>
+                                    ))
+                                ) : (
+                                    <div className="px-3 py-3 text-sm text-gray-600 dark:text-gray-300">
+                                        {loadingClients
+                                            ? "Loading clients..."
+                                            : "No se encontraron clientes"}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    {selectedClient && (
+                        <div className="rounded border border-gray-300 bg-gray-100 p-4 dark:bg-gray-800 dark:border-gray-700">
+                            <p className="text-sm">
+                                <span className="font-semibold">Cliente:</span>{" "}
+                                {selectedClient.name}
+                            </p>
+                            <p className="text-sm">
+                                <span className="font-semibold">Cédula:</span>{" "}
+                                {selectedClient.cedula}
+                            </p>
+                            <p className="text-sm">
+                                <span className="font-semibold">Address:</span>{" "}
+                                {selectedClient.address}
+                            </p>
+                            <p className="text-sm">
+                                <span className="font-semibold">Phone:</span>{" "}
+                                {selectedClient.phone}
+                            </p>
+                        </div>
+                    )}
+
+                    <div className="flex gap-3">
+                        <button
+                            type="submit"
+                            className="rounded bg-gray-700 px-4 py-2 font-bold text-white hover:bg-gray-600 dark:bg-blue-700 dark:hover:bg-blue-600"
+                        >
+                            Save order
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => navigate("/orders")}
+                            className="rounded border border-gray-400 px-4 py-2 font-bold text-black hover:bg-gray-200 dark:text-white dark:border-gray-600 dark:hover:bg-gray-800"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </>
+    );
+}
+
+export default NewOrderPage;

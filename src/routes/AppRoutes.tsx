@@ -22,6 +22,9 @@ import EditMaterial from "../pages/PageMaterial/EditMaterialPage";
 import OrderPage from "../pages/pageOrders/OrderPage";
 import RegisterMaterialPurchasePage from "../pages/pageExpense/expenseMaterialPurchesa";
 import TecnicalView from "../pages/pageView/tecnicalView";
+import NewOrderPage from "../pages/pageOrders/NewOrderPage";
+
+
 
 // Páginas simples
 const HomePage = () => <div className="text-black dark:text-white">Página de inicio</div>;
@@ -55,6 +58,7 @@ const AppRoutes: React.FC = () => {
 
           {/*Orders */}
           <Route path="/orders/:id" element={<OrderDetail />} />
+          <Route path="/orders/new" element={<NewOrderPage />} />
           <Route path="/orders" element={<OrderPage />} />
 
           {/*Expense */}

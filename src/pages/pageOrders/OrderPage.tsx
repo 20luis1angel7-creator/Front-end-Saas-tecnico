@@ -29,6 +29,12 @@ function OrderPage() {
             <h2 className=" text-black dark:text-white px-5 p-5 ">
                 Orders page</h2>
 
+            <Link to="/orders/new">
+                <button className="rounded bg-gray-700 m-5 px-4 py-2 font-bold text-white dark:bg-blue-700">
+                    Create order
+                </button>
+            </Link>
+
             <section>
                 <table className="min-w-full text-sm text-left text-gray-300 border border-gray-700 dark:text-gray-200 ">
                     <thead className="bg-gray-400 text-black uppercase text-xs dark:bg-gray-800 dark:text-gray-300">
