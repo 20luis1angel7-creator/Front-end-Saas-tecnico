@@ -220,7 +220,7 @@ function TecnicalView() {
                         <th className="px-4 py-2">cedula</th>
                         <th className="px-4 py-2">address</th>
                         <th className="px-4 py-2">phone</th>
-                        <th className="px-4 py-2">planId</th>
+                        <th className="px-4 py-2">plan</th>
                         <th className="px-4 py-2">status</th>
                         <th className="px-4 py-2">routerSerial</th>
                         <th className="px-4 py-2">actions</th>
@@ -238,7 +238,7 @@ function TecnicalView() {
                             <td className="px-4 py-2">{client.cedula}</td>
                             <td className="px-4 py-2">{client.address}</td>
                             <td className="px-4 py-2">{client.phone}</td>
-                            <td className="px-4 py-2">{client.planId}</td>
+                            <td className="px-4 py-2">{plans.find((plan) => plan.id === client.planId)?.name ?? "no plan"}</td>
                             <td className="px-4 py-2">{client.status}</td>
                             <td className="px-4 py-2">{client.routerSerial}</td>
 

@@ -50,7 +50,8 @@ function OrderPage() {
                     <tr key={order.id} className="border-b text-black border-gray-700 hover:bg-gray-100  dark:text-white dark:hover:bg-gray-800">
                             
                         
-                        <td className="px-4 py-2">{order.status}</td><td className="px-4 py-2">{order.client?.cedula ?? "No cedula"}</td>
+                        <td className="px-4 py-2">{order.status}</td>
+                        <td className="px-4 py-2">{order.client?.cedula ?? "No cedula"}</td>
                         <td className="px-4 py-2">{order.client?.name ?? "No name"}</td>
                         <td className="px-4 py-2">{order.client?.address ?? "No address"}</td>
                         <td className="px-4 py-2">{new Date(order.createdAt).toLocaleDateString()}</td>

@@ -59,7 +59,7 @@ function GetClients() {
                         <th className="px-4 py-2">cedula</th>
                         <th className="px-4 py-2">address</th>
                         <th className="px-4 py-2">phone</th>
-                        <th className="px-4 py-2">planId</th>
+                        <th className="px-4 py-2">plan</th>
                         <th className="px-4 py-2">status</th>
                         <th className="px-4 py-2">routerSerial</th>
                         <th className="px-4 py-2">acciones</th>
@@ -77,7 +77,7 @@ function GetClients() {
                             <td className="px-4 py-2">{client.phone}</td>
                             <td className="px-4 py-2">{plans.find((plan) => plan.id === client.planId)?.name ?? "no plan"}</td>
                             <td className="px-4 py-2">{client.status}</td>
-                            <td className="px-4 py-2">{client.routerSerial}</td>
+                            <td className="px-4 py-2">{client.routerSerial || "no router"}</td>
 
                             <td className="px-4 py-2 space-x-2">
                                 <Link to={`/clients/${client.id}`}>
